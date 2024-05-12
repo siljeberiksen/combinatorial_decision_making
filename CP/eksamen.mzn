@@ -49,15 +49,13 @@ D =
 % Capacity constraint 
 constraint forall (c in COURIERS) (
     sum(i in LOCATIONS, j in ITEMS) (routes[c,i,j] * sj[j]) <= li[c]
-);%check
+);
 %Need to have LOCATIONS to have all 
 
-% Ensure each item is picked up and delivered exactly once
+% Ensure each item deliverd
 constraint forall(i in ITEMS)(
     sum(c in COURIERS, j in LOCATIONS where i != j) (routes[c, i, j]) >= 1
 );
-
-
 %Ensure routes start and end at the origin for each courier
 constraint forall(c in COURIERS) (
     sum(i in ITEMS) (routes[c, n+1, i]) == 1
@@ -66,7 +64,7 @@ constraint forall(c in COURIERS) (
     sum(i in ITEMS) (routes[c, i, n+1]) == 1
 );
 
-%Check that same amount of in and out for the same node, making it a valid route
+%Check that same amount ofin in and out for the same node, making it a valid route
 constraint forall(c in COURIERS, i in LOCATIONS) (
     sum(j in LOCATIONS) (routes[c, i, j]) = sum(j in LOCATIONS) (routes[c, j, i])
 );
@@ -111,3 +109,8 @@ output [
     "Max Distance: " ++ show(max_distance) ++ "\n",
 ];
 
+
+%TODO:
+% Bounds not included
+% Triangle inaquality 
+% Symmetry
