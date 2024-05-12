@@ -76,8 +76,6 @@ constraint forall(c in COURIERS, i in LOCATIONS, j in LOCATIONS) (
     routes[c,i,i] == 0
 );
 
-%Look into circuit
-
 % Ensure each courier's route is a valid loop
 %constraint forall(c in COURIERS) (
 %    circuit([if j = n+1 then n+1 else sum(i in LOCATIONS) (i * routes[c, i, j]) endif | j in LOCATIONS])
