@@ -25,31 +25,32 @@ constraint forall(c in COURIERS, i in LOCATIONS) (
 );
 
 % Define the number of couriers
-m = 3;
+m = 2;
 
 % Define the number of items
-n = 5;
+n = 6;
 
 % Define load limits for each courier
-li = [100, 150, 200];
+li = [15,10];
 
 % Define the size of each item
-sj = [20, 30, 50, 30, 40];
+sj = [3, 2, 6, 5, 4, 4];
  
 % Define a 6x6 distance matrix (including the origin)
 D = 
-    [|0, 2, 3, 7, 6, 8
-     |2, 0, 6, 5, 7, 9
-     |3, 6, 0, 8, 5, 11
-     |7, 5, 8, 0, 4, 3
-     |6, 7, 5, 4, 0, 2
-     |8, 9, 11, 3, 2, 0|];
+    [|0, 3, 4, 5, 6, 6, 2 
+     |3, 0, 1, 4, 5, 7, 3
+     |4, 1, 0, 5, 6, 6, 4 
+     |4, 4, 5, 0, 3, 3, 2 
+     |6, 7, 8, 3, 0, 2, 4
+     |6, 7, 8, 3, 2, 0, 4 
+     |2, 3, 4, 3, 4, 4, 0 |];
 
 % Capacity constraint 
 constraint forall (c in COURIERS) (
-    sum(i in ITEMS, j in ITEMS) (routes[c,i,j] * sj[i]) <= li[c]
-);
-
+    sum(i in LOCATIONS, j in ITEMS) (routes[c,i,j] * sj[j]) <= li[c]
+);%check
+%Need to have LOCATIONS to have all 
 
 % Ensure each item is picked up and delivered exactly once
 constraint forall(i in ITEMS)(
@@ -106,7 +107,7 @@ var int: max_distance = max(c in COURIERS) (distances[c]);
 solve minimize max_distance;
     
 output [
-    "Routes: " ++ show([routes[3,i,j] | i in LOCATIONS, j in  LOCATIONS]) ++ "\n",
+    "Routes: " ++ show([routes[2,i,j] | i in LOCATIONS, j in  LOCATIONS]) ++ "\n",
     "Max Distance: " ++ show(max_distance) ++ "\n",
 ];
 
