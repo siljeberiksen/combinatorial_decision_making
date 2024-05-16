@@ -6,6 +6,6 @@ COPY . .
 
 #RUN apt-get install python3
 
-CMD minizinc --solver Gecode CP/eksamen.mzn --json-stream 
+CMD minizinc --json-stream --solver Gecode CP/eksamen.mzn -d instances/inst01.dat
 
 ## %% python3 main.py

@@ -24,28 +24,6 @@ constraint forall(c in COURIERS, i in LOCATIONS) (
     sum(j in LOCATIONS) (routes[c, i, j]) = sum(j in LOCATIONS) (routes[c, j, i])
 );
 
-% Define the number of couriers
-m = 2;
-
-% Define the number of items
-n = 6;
-
-% Define load limits for each courier
-li = [15,10];
-
-% Define the size of each item
-sj = [3, 2, 6, 5, 4, 4];
- 
-% Define a 6x6 distance matrix (including the origin)
-D = 
-    [|0, 3, 4, 5, 6, 6, 2 
-     |3, 0, 1, 4, 5, 7, 3
-     |4, 1, 0, 5, 6, 6, 4 
-     |4, 4, 5, 0, 3, 3, 2 
-     |6, 7, 8, 3, 0, 2, 4
-     |6, 7, 8, 3, 2, 0, 4 
-     |2, 3, 4, 3, 4, 4, 0 |];
-
 % Capacity constraint 
 constraint forall (c in COURIERS) (
     sum(i in LOCATIONS, j in ITEMS) (routes[c,i,j] * sj[j]) <= li[c]
@@ -103,9 +81,11 @@ constraint forall(c in COURIERS, i in LOCATIONS, j in LOCATIONS) (
 array [COURIERS] of var int: distances = [sum(i in LOCATIONS, j in LOCATIONS) (routes[c, i, j] * D[i, j]) | c in COURIERS];
 var int: max_distance = max(c in COURIERS) (distances[c]);
 solve minimize max_distance;
+
+% Bounding max distance
     
 output [
-    "Routes: " ++ show([routes[2,i,j] | i in LOCATIONS, j in  LOCATIONS]) ++ "\n",
+    "Routes: " ++ show([routes[c,i,j] | c in COURIERS, i in LOCATIONS, j in  LOCATIONS]) ++ "\n",
     "Max Distance: " ++ show(max_distance) ++ "\n",
 ];
 
