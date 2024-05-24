@@ -16,13 +16,12 @@ array [ITEMS] of var int: sj;
 array[LOCATIONS, LOCATIONS] of var int: D;
 
 % Look into triangle inacuality
-
 array [COURIERS, LOCATIONS, LOCATIONS] of var bool: routes;
 
 % Number of inputs = number of outputs
-constraint forall(c in COURIERS, i in LOCATIONS) (
-    sum(j in LOCATIONS) (routes[c, i, j]) = sum(j in LOCATIONS) (routes[c, j, i])
-);
+%constraint forall(c in COURIERS, i in LOCATIONS) (
+%    sum(j in LOCATIONS) (routes[c, i, j]) = sum(j in LOCATIONS) (routes[c, j, i])
+%);
 
 % Capacity constraint 
 constraint forall (c in COURIERS) (
@@ -32,8 +31,14 @@ constraint forall (c in COURIERS) (
 
 % Ensure each item deliverd
 constraint forall(i in ITEMS)(
-    sum(c in COURIERS, j in LOCATIONS where i != j) (routes[c, i, j]) >= 1
+    sum(c in COURIERS, j in LOCATIONS where i != j) (routes[c, i, j]) == 1
 );
+
+constraint forall(j in ITEMS)(
+    sum(c in COURIERS, i in LOCATIONS where i != j) (routes[c, j, i]) == 1
+);
+
+
 %Ensure routes start and end at the origin for each courier
 constraint forall(c in COURIERS) (
     sum(i in ITEMS) (routes[c, n+1, i]) == 1
@@ -42,15 +47,26 @@ constraint forall(c in COURIERS) (
     sum(i in ITEMS) (routes[c, i, n+1]) == 1
 );
 
-%Check that same amount ofin in and out for the same node, making it a valid route
+%Check that same amount of in in and out for the same node, making it a valid route
 constraint forall(c in COURIERS, i in LOCATIONS) (
-    sum(j in LOCATIONS) (routes[c, i, j]) = sum(j in LOCATIONS) (routes[c, j, i])
+   sum(j in LOCATIONS) (routes[c, i, j]) = sum(j in LOCATIONS) (routes[c, j, i])
+);
+% Prohibit self-loops
+constraint forall(c in COURIERS, i in LOCATIONS) (
+    routes[c, i, i] == 0
+);
+% Prohibit immediate return to the last location and no going to current position
+% Only items to make it possible to couriers to collect only one item
+constraint forall(c in COURIERS, i in ITEMS, j in ITEMS) (
+    routes[c, i, j] -> not routes[c, j, i]
 );
 
-% Prohibit immediate return to the last location and no going to current position
-constraint forall(c in COURIERS, i in LOCATIONS, j in LOCATIONS) (
-    routes[c, i, j] -> not routes[c, j, i] /\
-    routes[c,i,i] == 0
+% Allow single item pickup but restrict direct travel from origin to multiple items
+constraint forall(c in COURIERS) (
+    sum(i in ITEMS, j in LOCATIONS) (routes[c, i, j]) > 1 ->(
+    forall(i in ITEMS) (
+        routes[c, n+1, i] -> not routes[c, i, n+1])
+    )
 );
 
 % Ensure each courier's route is a valid loop
@@ -86,6 +102,7 @@ solve minimize max_distance;
     
 output [
     "Routes: " ++ show([routes[c,i,j] | c in COURIERS, i in LOCATIONS, j in  LOCATIONS]) ++ "\n",
+    "Distances: " ++ show(distances) ++ "\\n" ,
     "Max Distance: " ++ show(max_distance) ++ "\n",
 ];
 
