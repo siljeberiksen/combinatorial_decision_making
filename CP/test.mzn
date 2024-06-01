@@ -2,6 +2,7 @@ include "alldifferent.mzn";
 include "gecode.mzn";
 include "lex_lesseq.mzn";
 include "circuit.mzn";
+include "lex_lesseq.mzn";
 %simpler
 
 int: m; % number of couriers
@@ -16,54 +17,52 @@ array [ITEMS] of var int: sj;
 array[LOCATIONS, LOCATIONS] of var int: D;
 
 % Look into triangle inacuality
-
-array [COURIERS, LOCATIONS, LOCATIONS] of var bool: routes;
-%If tru
-
-% Define the number of couriers
-m = 3;
-
-% Define the number of items
-n = 5;
-
-% Define load limits for each courier
-li = [100, 150, 200];
-
-% Define the size of each item
-sj = [20, 30, 50, 30, 40];
- 
-% Define a 6x6 distance matrix (including the origin)
-D = 
-    [|0, 2, 3, 7, 6, 8
-     |2, 0, 6, 5, 7, 9
-     |3, 6, 0, 8, 5, 11
-     |7, 5, 8, 0, 4, 3
-     |6, 7, 5, 4, 0, 2
-     |8, 9, 11, 3, 2, 0|];
-
-% Capacity constraint 
-constraint forall (c in COURIERS) (
-    sum(i in ITEMS, j in ITEMS) (routes[c,i,j] * sj[i]) <= li[c]
-);
+% Array to store the next location in the route for each courier
+array[COURIERS, LOCATIONS] of var 0..n+1: next_location;
+array[COURRIERS, 1..n] of var bool: in_circuit; 
 
 
-% Ensure each item is picked up and delivered exactly once
+
+% Ensure in_circuit array reflects whether a node is in the circuit
+constraint forall(c in COURRIERS, i in 1..n) (in_circuit[c, i] = (tour[i] != 0));
+
+% Ensure each location is visited exactly once by some courier
 constraint forall(i in ITEMS)(
-    sum(c in COURIERS, j in LOCATIONS where i != j) (routes[c, i, j]) == 1
+    sum(c in COURIERS, j in LOCATIONS)(next_location[c, j] == i) == 1
 );
 
-% Ensure routes start and end at the origin for each courier
-constraint forall(c in COURIERS) (
-    sum(i in ITEMS) (routes[c, n+1, i]) == 1 /\ % Route must start at the origin
-    sum(i in ITEMS) (routes[c, i, n+1]) == 1    % Route must end at the origin
+
+% Circuit constraint for each courier
+constraint forall(c in COURIERS)(
+    circuit(next_location[c,..])
 );
 
-% Minimize the maximum distance traveled
-array [COURIERS] of var int: distances = [sum(i in LOCATIONS, j in LOCATIONS) (routes[c, i, j] * D[i, j]) | c in COURIERS];
-var int: max_distance = max(c in COURIERS) (distances[c]);
-solve minimize max_distance;
 
-output [
-    "Routes: " ++ show([routes[c,i,j] | c in COURIERS, i in LOCATIONS, j in  LOCATIONS]) ++ "\n",
-    "Max Distance: " ++ show(max_distance) ++ "\n"
+
+% Bounding max distance
+% Determine realistic lower and upper bounds for max_distance
+
+% Constraint to ensure max_distance is the maximum distance travelled by any courier
+%Minimize the maximum distance traveled
+% Calculate the distance traveled by each courier
+array[COURIERS] of var int: distances = [
+    sum(i in LOCATIONS) (D[i, next_location[c, i]]) | c in COURIERS
 ];
+
+
+var int: max_distance = max(c in COURIERS) (distances[c]);
+
+solve minimize max_distance;
+    
+output [
+    "Routes: " ++ show([next_location[c,i] | c in COURIERS, i in ITEMS]) ++ "\n",
+    "Distances: " ++ show(distances) ++ "\\n" ,
+    "Max Distance: " ++ show(max_distance) ++ "\n",
+    "Next Location: " ++ show(next_location) ++ "\\n",
+];
+
+
+%TODO:
+% Bounds not included
+% Triangle inaquality 
+% Symmetry

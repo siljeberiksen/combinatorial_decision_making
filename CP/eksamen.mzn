@@ -2,6 +2,7 @@ include "alldifferent.mzn";
 include "gecode.mzn";
 include "lex_lesseq.mzn";
 include "circuit.mzn";
+include "lex_lesseq.mzn";
 %simpler
 
 int: m; % number of couriers
@@ -35,7 +36,7 @@ constraint forall(i in ITEMS)(
 );
 
 constraint forall(j in ITEMS)(
-    sum(c in COURIERS, i in LOCATIONS where i != j) (routes[c, j, i]) == 1
+    sum(c in COURIERS, i in LOCATIONS where i != j) (routes[c, i, j]) == 1
 );
 
 
@@ -63,11 +64,14 @@ constraint forall(c in COURIERS, i in ITEMS, j in ITEMS) (
 
 % Allow single item pickup but restrict direct travel from origin to multiple items
 constraint forall(c in COURIERS) (
-    sum(i in ITEMS, j in LOCATIONS) (routes[c, i, j]) > 1 ->(
+   sum(i in ITEMS, j in LOCATIONS) (routes[c, i, j]) > 1 ->(
     forall(i in ITEMS) (
         routes[c, n+1, i] -> not routes[c, i, n+1])
     )
 );
+
+%Triangle inaquality 
+%D[i,k]≤D[i,j]+D[j,k] for each i,j,k
 
 % Ensure each courier's route is a valid loop
 %constraint forall(c in COURIERS) (
@@ -92,13 +96,26 @@ constraint forall(c in COURIERS) (
 %);
 %To use circuit we will need an auciliritary 
 
+% Symmetry breaking: Impose lexicographic order on the items delivered by the couriers
+array[COURIERS, ITEMS] of var int: delivered_items;
+constraint forall(c in COURIERS, i in ITEMS)(
+    delivered_items[c, i] = sum(j in LOCATIONS) (j * routes[c, j, i])
+);
+
+constraint forall(c in 1..m-1)(
+    lex_lesseq([delivered_items[c, i] | i in ITEMS], [delivered_items[c+1, i] | i in ITEMS])
+);
 
 % Minimize the maximum distance traveled
 array [COURIERS] of var int: distances = [sum(i in LOCATIONS, j in LOCATIONS) (routes[c, i, j] * D[i, j]) | c in COURIERS];
 var int: max_distance = max(c in COURIERS) (distances[c]);
-solve minimize max_distance;
 
 % Bounding max distance
+% Determine realistic lower and upper bounds for max_distance
+
+% Constraint to ensure max_distance is the maximum distance travelled by any courier
+
+solve minimize max_distance;
     
 output [
     "Routes: " ++ show([routes[c,i,j] | c in COURIERS, i in LOCATIONS, j in  LOCATIONS]) ++ "\n",

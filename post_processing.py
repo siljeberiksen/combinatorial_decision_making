@@ -3,8 +3,12 @@ import re
 import numpy as np
 
 def process(data, number):
-    with open(f'Instances/inst0{number}.dat', 'r') as file:
-        lines = file.readlines()
+    if number <10:
+        with open(f'Instances/inst0{number}.dat', 'r') as file:
+            lines = file.readlines()
+    else:
+        with open(f'Instances/inst{number}.dat', 'r') as file:
+            lines = file.readlines()
     
     # Process the input data
     m = int(lines[0].strip())
@@ -65,7 +69,7 @@ def process(data, number):
 
 
 
-for k in range(1,5):
+for k in range(2,3):
     print("k", k)
     with open(f'CP/results/inst{k}.json', 'r') as file:
         data = json.load(file)
