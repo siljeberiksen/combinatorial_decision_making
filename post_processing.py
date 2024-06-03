@@ -64,12 +64,12 @@ def process(data, number):
     }
 
 
-    with open(f"result/SAT/{number}.json", 'w') as output_file:
+    with open(f"result/CP/{number}.json", 'w') as output_file:
         json.dump(result_data, output_file, indent=4)
 
 
 
-for k in range(2,3):
+for k in range(1,10):
     print("k", k)
     with open(f'CP/results/inst{k}.json', 'r') as file:
         data = json.load(file)
