@@ -1,10 +1,16 @@
-from z3 import *
+import z3
 
-# Input parameters
-m = 3  # number of couriers
-n = 7  # number of items
-l_i = [15, 10, 7]  # maximum load size of each courier i
-s_j = [3, 2, 6, 8, 5, 4, 4]  # size of each item
+# Number of couriers and items
+m = 3
+n = 7
+
+# Maximum load size of each courier i
+l_i = [15, 10, 7]
+
+# Size of each item
+s_j = [3, 2, 6, 8, 5, 4, 4]
+
+# Distance matrix
 D = [
     [0, 3, 3, 6, 5, 6, 6, 2],
     [3, 0, 4, 3, 4, 7, 7, 3],
@@ -14,46 +20,45 @@ D = [
     [6, 7, 3, 6, 3, 0, 2, 4],
     [6, 7, 5, 6, 3, 2, 0, 4],
     [2, 3, 3, 4, 3, 4, 4, 0]
-]  # distance matrix
+]
+
+# Reached points of items
+reachedPointsOfItems = [1, 2, 3, 4, 5, 6, 7]
+
+# Initialize the Z3 optimizer
+constraintsSolver = z3.Optimize()
 
 # Decision variables
-binVar = [[Bool(f"x_{i}_{j}") for j in range(n)] for i in range(m)]
-# binVar[i][j] is True if item j is assigned to courier i, False otherwise
+decisionVariables = [[z3.Bool(f'x_{i}_{j}') for j in range(n)] for i in range(m)]
 
-# Calculate total item size carried by each courier
-totalItemSizeEachCourierList = []
+# Constraints for max load capacity
 for i in range(m):
-    totalItemSizeEachCourier = Sum([If(binVar[i][j], s_j[j], 0) for j in range(n)])
-    totalItemSizeEachCourierList.append(totalItemSizeEachCourier)
+    constraintsSolver.add(z3.Sum([z3.If(decisionVariables[i][j], s_j[j], 0) for j in range(n)]) <= l_i[i])
 
-# Calculate total distance traveled by each courier
-listTotalDistanceEachCourier = []
-for i in range(m):
-    t_i = Sum([If(binVar[i][j], D[0][j], 0) for j in range(n)])  # Assuming startingPoint is 0 (o)
-    listTotalDistanceEachCourier.append(t_i)
-
-# Constraints setup
-constraintsSolver = Solver()
-for i in range(m):
-    constraintsSolver.add(totalItemSizeEachCourierList[i] <= l_i[i])  # Load capacity constraint
-
+# Constraints to ensure each item is assigned exactly once
 for j in range(n):
-    constraintsSolver.add(Sum([If(binVar[i][j], 1, 0) for i in range(m)]) == 1)  # Each item assigned exactly once
+    constraintsSolver.add(z3.Sum([z3.If(decisionVariables[i][j], 1, 0) for i in range(m)]) == 1)
 
-# Objective to minimize the maximum distance traveled by any courier
-distanceMax = Int('distanceMax')
-constraintsSolver.add(distanceMax == Max(listTotalDistanceEachCourier))
+# Distance traveled by each courier
+distanceTraveledByEachCourier = []
+for i in range(m):
+    totalDistance = z3.Sum([z3.If(decisionVariables[i][j], D[0][reachedPointsOfItems[j]], 0) for j in range(n)])
+    distanceTraveledByEachCourier.append(totalDistance)
+
+# Minimize the maximum distance
+distanceMax = z3.Real('distanceMax')
+for dist in distanceTraveledByEachCourier:
+    constraintsSolver.add(dist <= distanceMax)
 constraintsSolver.minimize(distanceMax)
 
-# Solve and obtain solution
-if constraintsSolver.check() == sat:
-    solModel = constraintsSolver.model()
-    matrixAssigning = [[] for _ in range(m)]
+# Check the solution
+if constraintsSolver.check() == z3.sat:
+    model = constraintsSolver.model()
+    result = [[] for _ in range(m)]
     for i in range(m):
         for j in range(n):
-            if is_true(solModel[binVar[i][j]]):
-                matrixAssigning[i].append(j)
-    solution = matrixAssigning
-    print(f"Maximum distance: {solModel[distanceMax]}, solution: {solution}")
+            if model.evaluate(decisionVariables[i][j]):
+                result[i].append(j)
+    print(f"Maximum distance: {model.evaluate(distanceMax)}, Result: {result}")
 else:
-    print("There is no solution")
+    print("No optimal solution found.")
