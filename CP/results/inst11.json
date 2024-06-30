@@ -1,7 +1,64 @@
 [
   {
+    "type": "warning",
+    "location": {
+      "filename": "/Users/silje/Documents/combinatorial_decision_making/CP/CP.mzn",
+      "firstLine": 30,
+      "firstColumn": 5,
+      "lastLine": 30,
+      "lastColumn": 80
+    },
+    "stack": [
+      {
+        "location": {
+          "filename": "/Users/silje/Documents/combinatorial_decision_making/CP/CP.mzn",
+          "firstLine": 29,
+          "firstColumn": 12,
+          "lastLine": 31,
+          "lastColumn": 1
+        },
+        "isCompIter": false,
+        "description": "call 'forall'"
+      },
+      {
+        "location": {
+          "filename": "/Users/silje/Documents/combinatorial_decision_making/CP/CP.mzn",
+          "firstLine": 29,
+          "firstColumn": 12,
+          "lastLine": 31,
+          "lastColumn": 1
+        },
+        "isCompIter": false,
+        "description": "array comprehension expression"
+      },
+      {
+        "location": {
+          "filename": "/Users/silje/Documents/combinatorial_decision_making/CP/CP.mzn",
+          "firstLine": 29,
+          "firstColumn": 19,
+          "lastLine": 29,
+          "lastColumn": 19
+        },
+        "isCompIter": true,
+        "description": "i = <expression>"
+      },
+      {
+        "location": {
+          "filename": "/Users/silje/Documents/combinatorial_decision_making/CP/CP.mzn",
+          "firstLine": 30,
+          "firstColumn": 5,
+          "lastLine": 30,
+          "lastColumn": 80
+        },
+        "isCompIter": false,
+        "description": "call 'mzn_deprecate'"
+      }
+    ],
+    "message": "The function/predicate `exactly' was deprecated in MiniZinc version 2.4.0.\nMore information can be found at https://www.minizinc.org/doc-2.4.0/en/lib-globals.html#deprecated.\nIMPORTANT: This function/predicate will be removed in the next minor version release of MiniZinc."
+  },
+  {
     "type": "status",
     "status": "ERROR",
-    "time": 71650
+    "time": 89782
   }
 ]

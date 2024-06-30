@@ -1,0 +1,7 @@
+[
+  {
+    "type": "error",
+    "what": "argument parsing error",
+    "message": "minizinc: Unrecognized option or bad format `./run_model.sh'"
+  }
+]

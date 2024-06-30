@@ -1,14 +1,33 @@
+# FROM minizinc/minizinc:latest
+
+# WORKDIR /src
+
+# # Copy the script into the container
+# COPY . .
+
+# #RUN apt-get install python3
+# RUN apt-get update && apt-get install -y jq
+
+
+# CMD minizinc --json-stream --solver Gecode CP/eksamen.mzn -d Instances_dzn/inst02.dzn --solver-time-limit 300000 --output-time | jq -s '.' > CP/results/inst2.json
+
+# ## %% python3 main.py
+
+# Use the official MiniZinc image from the Docker Hub
 FROM minizinc/minizinc:latest
 
-WORKDIR /src
-
-# Copy the script into the container
-COPY . .
-
-#RUN apt-get install python3
+# Install jq for JSON processing
 RUN apt-get update && apt-get install -y jq
 
+# Set the working directory
+WORKDIR /src
 
-CMD minizinc --json-stream --solver Gecode CP/eksamen.mzn -d Instances_dzn/inst02.dzn --solver-time-limit 300000 --output-time | jq -s '.' > CP/results/inst2.json
+# Copy all the files into the container
+COPY . .
 
-## %% python3 main.py
+# Make sure the run_model.sh script is executable
+RUN chmod +x ./run_model.sh
+RUN chmod +x ./CP/CP.mzn
+
+# Define the entry point script
+CMD minizinc --json-stream --solver Gecode CP/CP.mzn -d Instances_dzn/inst02.dzn --solver-time-limit 300000 --output-time | jq -s '.' > CP/results/docker.json
