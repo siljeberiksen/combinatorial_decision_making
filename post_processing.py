@@ -69,7 +69,7 @@ def process(data, number):
 
 
 
-for k in range(1,10):
+for k in range(2,3):
     print("k", k)
     with open(f'CP/results/inst{k}.json', 'r') as file:
         data = json.load(file)

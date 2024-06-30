@@ -2,5 +2,4 @@
 
 
 In order to run docker file:
-docker run --rm -v $(pwd)/CP/results:/src/CP/results test 
-This gives the Docker file permission to save to file. 
+docker run --rm -v $(pwd)/CP/results:/src/CP/results test CP/CP.mzn Instances_dzn/inst02.dzn CP/results/testtest.json geocode

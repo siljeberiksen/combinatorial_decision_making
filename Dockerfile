@@ -26,8 +26,10 @@ WORKDIR /src
 COPY . .
 
 # Make sure the run_model.sh script is executable
+RUN chmod +x ./run_all_models.sh
 RUN chmod +x ./run_model.sh
-RUN chmod +x ./CP/CP.mzn
+RUN chmod +x ./CP
+
 
 # Define the entry point script
-CMD minizinc --json-stream --solver Gecode CP/CP.mzn -d Instances_dzn/inst02.dzn --solver-time-limit 300000 --output-time | jq -s '.' > CP/results/docker.json
+ENTRYPOINT ["./run_all_models.sh"]

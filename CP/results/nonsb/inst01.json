@@ -1,0 +1,19 @@
+[
+  {
+    "type": "solution",
+    "output": {
+      "default": "Routes: [false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, true, false, false, false, false, false]\nDistances: [13, 14]\\nMax Distance: 14\n",
+      "raw": "Routes: [false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, true, false, false, false, false, false]\nDistances: [13, 14]\\nMax Distance: 14\n"
+    },
+    "sections": [
+      "default",
+      "raw"
+    ],
+    "time": 75
+  },
+  {
+    "type": "status",
+    "status": "OPTIMAL_SOLUTION",
+    "time": 75
+  }
+]
