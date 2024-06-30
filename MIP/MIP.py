@@ -1,4 +1,5 @@
 import pulp
+import json
 
 # Input parameters
 m = 3  # number of couriers
@@ -15,30 +16,20 @@ D = [
     [6, 7, 5, 6, 3, 2, 0, 4],
     [2, 3, 3, 4, 3, 4, 4, 0]
 ]  # distance matrix
-reachedPointsOfItems = [1, 2, 3, 4, 5, 6, 7]  # example points for items, adjust as needed
 
 # Decision variables
 decisionVariables = pulp.LpVariable.dicts('x', [(i, j) for i in range(m) for j in range(n)], cat=pulp.LpBinary)
 # x[i, j] is 1 if item j is assigned to courier i, otherwise 0
 
 # Assigned sum of sizes for each courier
-assignedSumOfSizesForEachCourier = []
-for i in range(m):
-    assignedSumOfSizesForEachCourier.append(
-        pulp.lpSum(decisionVariables[(i, j)] * s_j[j] for j in range(n))
-    )
+assignedSumOfSizesForEachCourier = [
+    pulp.lpSum(decisionVariables[(i, j)] * s_j[j] for j in range(n)) for i in range(m)
+]
 
 # Distance traveled by each courier
-distanceTraveledByEachCourier = []
-for i in range(m):
-    currentStartingPoint = 0  # Assuming starting point is 0 (o)
-    temporyList2 = []
-    for j in range(n):
-        temporyList2.append(
-            decisionVariables[(i, j)] * D[currentStartingPoint][reachedPointsOfItems[j]]
-        )
-        currentStartingPoint = reachedPointsOfItems[j]  # Update starting point
-    distanceTraveledByEachCourier.append(pulp.lpSum(temporyList2))
+distanceTraveledByEachCourier = [
+    pulp.lpSum(decisionVariables[(i, j)] * D[0][j + 1] for j in range(n)) for i in range(m)
+]
 
 # Model setup
 linearProgrammingProblem = pulp.LpProblem("Multiple Couriers Planning", pulp.LpMinimize)
@@ -60,13 +51,18 @@ for i in range(m):
 # Solve the problem
 linearProgrammingProblem.solve()
 
-# Output the results
+# Output the results in the desired format
+output = {"geocode": {"time": pulp.value(linearProgrammingProblem.solutionTime), "optimal": pulp.LpStatus[linearProgrammingProblem.status] == "Optimal", "obj": pulp.value(distanceMaximum)}}
+
 if pulp.LpStatus[linearProgrammingProblem.status] == "Optimal":
     result = [[] for _ in range(m)]
     for i in range(m):
         for j in range(n):
             if pulp.value(decisionVariables[(i, j)]) == 1:
-                result[i].append(j)
-    print(f"Maximum distance: {pulp.value(distanceMaximum)}, Result: {result}")
+                result[i].append(j + 1)  # Use 1-based indexing for consistency with CP output
+    output["geocode"]["sol"] = result
 else:
-    print("No optimal solution found.")
+    output["geocode"]["sol"] = []
+
+# Print the result in JSON format
+print(json.dumps(output, indent=4))
