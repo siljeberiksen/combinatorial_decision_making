@@ -9,8 +9,10 @@ mkdir -p $RESULTS_DIR
 
 # Define an array of solvers
 SOLVERS=("Gecode" "Chuffed")
+# for solver in "${SOLVERS[@]}"; do
 for solver in $SOLVERS; do
-  for MODEL in "./CP/sb_io_im.mzn"; do
+  for MODEL in "$MODELS_DIR"/*.mzn; do
+  #for MODEL in "./CP/sb_dwd_ir.mzn"; do
     # Check if there are any .mzn files to process
     echo solver
     echo "Processing $MODEL" 

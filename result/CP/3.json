@@ -39,6 +39,26 @@
             ]
         ]
     },
+    "sb_io_im_gecode": {
+        "time": 0.055,
+        "optimal": true,
+        "obj": 12,
+        "sol": [
+            [
+                5,
+                6,
+                3
+            ],
+            [
+                2,
+                4
+            ],
+            [
+                1,
+                7
+            ]
+        ]
+    },
     "nsb_dwd_im_gecode": {
         "time": 0.071,
         "optimal": true,
@@ -140,18 +160,18 @@
         ]
     },
     "sb_io_ir_gecode": {
-        "time": 0.077,
+        "time": 0.064,
         "optimal": true,
         "obj": 12,
         "sol": [
             [
                 5,
-                6,
-                3
+                4,
+                2
             ],
             [
-                2,
-                4
+                3,
+                6
             ],
             [
                 1,

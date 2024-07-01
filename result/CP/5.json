@@ -27,6 +27,20 @@
             ]
         ]
     },
+    "sb_io_im_gecode": {
+        "time": 0.037,
+        "optimal": true,
+        "obj": 206,
+        "sol": [
+            [
+                2
+            ],
+            [
+                1,
+                3
+            ]
+        ]
+    },
     "nsb_dwd_im_gecode": {
         "time": 0.043,
         "optimal": true,
@@ -98,7 +112,7 @@
         ]
     },
     "sb_io_ir_gecode": {
-        "time": 0.039,
+        "time": 0.042,
         "optimal": true,
         "obj": 206,
         "sol": [

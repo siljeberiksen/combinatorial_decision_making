@@ -1,4 +1,4 @@
-include "lex_lesseq.mzn";
+include "lex_less.mzn";
 
 int: m; % number of couriers
 int: n; % number of items
@@ -64,8 +64,9 @@ constraint forall(c in COURIERS, i in ITEMS)(
     delivered_items[c, i] = sum(j in LOCATIONS) (j * routes[c, j, i])
 );
 
-constraint forall(c in 1..m-1)(
-    lex_lesseq([delivered_items[c, i] | i in ITEMS], [delivered_items[c+1, i] | i in ITEMS])
+
+constraint forall(c1 in COURIERS, c2 in COURIERS where c1 < c2)(
+    (li[c1] = li[c2] -> lex_less([delivered_items[c1, i] | i in ITEMS], [delivered_items[c2, i] | i in ITEMS]))
 );
 
 % Minimize the maximum distance traveled

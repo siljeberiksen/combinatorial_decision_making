@@ -1,0 +1,134 @@
+{
+    "sb_dwd_im_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_ff_im_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_dwd_im_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_io_im_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "sb_ff_im_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "sb_dwd_ir_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_ff_ir_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": 1962,
+        "sol": [
+            [
+                44,
+                32
+            ],
+            [
+                34,
+                36
+            ],
+            [
+                41,
+                40,
+                35,
+                37,
+                39,
+                42,
+                43,
+                45,
+                46
+            ]
+        ]
+    },
+    "sb_io_ir_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_dwd_ir_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": 2152,
+        "sol": [
+            [
+                21,
+                22
+            ],
+            [
+                23,
+                28,
+                33,
+                34,
+                41,
+                29,
+                31,
+                27,
+                30,
+                32,
+                35
+            ],
+            [
+                42,
+                40,
+                38,
+                45,
+                46,
+                47
+            ]
+        ]
+    },
+    "nsb_io_ir_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": 1962,
+        "sol": [
+            [
+                44,
+                32
+            ],
+            [
+                34,
+                36
+            ],
+            [
+                41,
+                40,
+                35,
+                37,
+                39,
+                42,
+                43,
+                45,
+                46
+            ]
+        ]
+    },
+    "sb_ff_ir_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    }
+}

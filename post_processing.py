@@ -109,6 +109,7 @@ results = {}
 for folder in subdirectories:
     for filename in os.listdir(directory_path + folder + "/Gecode"):
         if filename.endswith(".json"):
+            print(directory_path + folder + "/Gecode/" + filename)
             with open(directory_path + folder + "/Gecode/" + filename, 'r') as file:
                data = json.load(file)
             result = process(data, filename)

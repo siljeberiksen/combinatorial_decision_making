@@ -1,14 +1,19 @@
 [
   {
-    "type": "error",
-    "what": "syntax error",
-    "location": {
-      "filename": "/src/CP/sb_io_ir.mzn",
-      "firstLine": 80,
-      "firstColumn": 1,
-      "lastLine": 80,
-      "lastColumn": 10
+    "type": "solution",
+    "output": {
+      "default": "Routes: [false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, true, false, false, false, false, false]\nDistances: [13, 14]\\nMax Distance: 14\n",
+      "raw": "Routes: [false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, true, false, false, false, false, false]\nDistances: [13, 14]\\nMax Distance: 14\n"
     },
-    "message": "syntax error, unexpected identifier, expecting ++ or ':'"
+    "sections": [
+      "default",
+      "raw"
+    ],
+    "time": 127
+  },
+  {
+    "type": "status",
+    "status": "OPTIMAL_SOLUTION",
+    "time": 127
   }
 ]
