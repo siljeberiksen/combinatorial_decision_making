@@ -17,7 +17,7 @@ for solver in $SOLVERS; do
       echo $INSTANCE
       MODEL_NAME=$(basename $MODEL .mzn)
       INSTANCE_NAME=$(basename $INSTANCE .dzn)
-      RESULT_FILE="$RESULTS_DIR/${MODEL_NAME}/${INSTANCE_NAME}.json"
+      RESULT_FILE="$RESULTS_DIR/${MODEL_NAME}/${solver}/${INSTANCE_NAME}.json"
 
       # Run the model on the instance and save the result
       ./run_model.sh $MODEL $INSTANCE $RESULT_FILE $solver

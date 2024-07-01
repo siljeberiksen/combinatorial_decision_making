@@ -1,5 +1,4 @@
 #!/bin/sh
-echo "hallo"
 # Assign the arguments to variables
 MODEL_FILE=$1
 INSTANCE_FILE=$2
@@ -15,4 +14,4 @@ fi
 #CP/results/insttest2.json
 
 # Run the MiniZinc model with the specified instance and save the result
-minizinc --json-stream --solver $SOLVER $MODEL_FILE -d $INSTANCE_FILE --solver-time-limit 300000 --output-time | jq -s '.' > $RESULT_FILE   
+minizinc --json-stream --solver $SOLVER $MODEL_FILE -d $INSTANCE_FILE --solver-time-limit 290000 --output-time | jq -s '.' > $RESULT_FILE   
