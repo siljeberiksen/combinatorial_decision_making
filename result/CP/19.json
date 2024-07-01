@@ -1,0 +1,68 @@
+{
+    "sb_dwd_im_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_ff_im_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_dwd_im_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_io_im_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "sb_ff_im_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "sb_dwd_ir_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_ff_ir_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "sb_io_ir_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_dwd_ir_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_io_ir_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "sb_ff_ir_gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    }
+}

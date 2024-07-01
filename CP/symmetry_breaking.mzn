@@ -64,9 +64,8 @@ constraint forall(c in COURIERS, i in ITEMS)(
     delivered_items[c, i] = sum(j in LOCATIONS) (j * routes[c, j, i])
 );
 
-% Apply lexicographical ordering between all pairs of couriers with the same capacity
-constraint forall(c1 in COURIERS, c2 in COURIERS where c1 < c2)(
-    li[c1] = li[c2] -> lex_greater([delivered_items[c1, i] | i in ITEMS], [delivered_items[c2, i] | i in ITEMS])
+constraint forall(c in 1..m-1)(
+    lex_greater([delivered_items[c, i] | i in ITEMS], [delivered_items[c+1, i] | i in ITEMS])
 );
 
 % Minimize the maximum distance traveled
@@ -75,16 +74,13 @@ var int: max_distance = max(c in COURIERS) (distances[c]);
 
 ann:search_ann;
 
-nsb_ff_im_gecode
 %search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], input_order, indomain_min);
 search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], input_order, indomain_random);
 %search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], first_fail, indomain_min);
 %search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], first_fail, indomain_random);
 %search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], dom_w_deg, indomain_min);
 %search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], dom_w_wdeg, indomain_random);
-solve
-::search_ann 
-minimize max_distance;
+solve minimize max_distance;
 
     
 output [

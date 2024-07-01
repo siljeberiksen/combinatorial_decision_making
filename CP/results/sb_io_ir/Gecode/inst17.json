@@ -3,24 +3,12 @@
     "type": "error",
     "what": "syntax error",
     "location": {
-      "filename": "/src/Instances_dzn/inst17.dzn",
-      "firstLine": 9,
-      "firstColumn": 7,
-      "lastLine": 295,
-      "lastColumn": 1179
+      "filename": "/src/CP/sb_io_ir.mzn",
+      "firstLine": 80,
+      "firstColumn": 1,
+      "lastLine": 80,
+      "lastColumn": 10
     },
-    "message": "syntax error, all sub-arrays of 2d array literal must have the same length"
-  },
-  {
-    "type": "error",
-    "what": "syntax error",
-    "location": {
-      "filename": "/src/Instances_dzn/inst17.dzn",
-      "firstLine": 9,
-      "firstColumn": 7,
-      "lastLine": 295,
-      "lastColumn": 1179
-    },
-    "message": "syntax error, all sub-arrays of 2d array literal must have the same length"
+    "message": "syntax error, unexpected identifier, expecting ++ or ':'"
   }
 ]

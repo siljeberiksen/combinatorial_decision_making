@@ -10,12 +10,14 @@ mkdir -p $RESULTS_DIR
 # Define an array of solvers
 SOLVERS=("Gecode" "Chuffed")
 for solver in $SOLVERS; do
-  for MODEL in "$MODELS_DIR"/*.mzn; do
+  for MODEL in "./CP/sb_io_im.mzn"; do
     # Check if there are any .mzn files to process
+    echo solver
     echo "Processing $MODEL" 
     for INSTANCE in $INSTANCES_DIR/*.dzn; do
       echo $INSTANCE
       MODEL_NAME=$(basename $MODEL .mzn)
+      echo $MODEL_NAME
       INSTANCE_NAME=$(basename $INSTANCE .dzn)
       RESULT_FILE="$RESULTS_DIR/${MODEL_NAME}/${solver}/${INSTANCE_NAME}.json"
 

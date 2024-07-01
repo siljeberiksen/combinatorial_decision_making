@@ -1,7 +1,14 @@
 [
   {
-    "type": "status",
-    "status": "UNKNOWN",
-    "time": 294776
+    "type": "error",
+    "what": "syntax error",
+    "location": {
+      "filename": "/src/CP/sb_io_ir.mzn",
+      "firstLine": 80,
+      "firstColumn": 1,
+      "lastLine": 80,
+      "lastColumn": 10
+    },
+    "message": "syntax error, unexpected identifier, expecting ++ or ':'"
   }
 ]

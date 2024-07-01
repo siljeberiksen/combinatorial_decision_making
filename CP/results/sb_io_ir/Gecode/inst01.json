@@ -1,19 +1,14 @@
 [
   {
-    "type": "solution",
-    "output": {
-      "default": "Routes: [false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, true, false, false, false, false, true, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false]\nDistances: [15, 10]\\nMax Distance: 15\n",
-      "raw": "Routes: [false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, true, false, false, false, false, true, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false]\nDistances: [15, 10]\\nMax Distance: 15\n"
+    "type": "error",
+    "what": "syntax error",
+    "location": {
+      "filename": "/src/CP/sb_io_ir.mzn",
+      "firstLine": 80,
+      "firstColumn": 1,
+      "lastLine": 80,
+      "lastColumn": 10
     },
-    "sections": [
-      "default",
-      "raw"
-    ],
-    "time": 48
-  },
-  {
-    "type": "status",
-    "status": "OPTIMAL_SOLUTION",
-    "time": 48
+    "message": "syntax error, unexpected identifier, expecting ++ or ':'"
   }
 ]
