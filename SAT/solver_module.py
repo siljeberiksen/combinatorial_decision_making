@@ -256,5 +256,5 @@ def MCP(m, n, li, sj, D, instance_name, time_limit=300):
                 break
 
     # Therefor we return the best results we got.
-    save_results(None, None, 300, False, instance_name)
-    return solution, best_pivot, execution_time
+    save_results(solution, best_pivot, 300, False, instance_name)
+    return solution, best_pivot, 300

@@ -9,7 +9,7 @@ def all_variables(m, n, li, sj, D):
   # Let's define the minimum of places travelled by all couriers
   # First possiblity : all couriers take at least one item. Then it will remain n-m items.
   # So the max ammount of places travelled by a courier will be n-m (taking all the remaining items) + 1 (taking his/her first item like other couriers) + 1 (the depot)
-  # Second possibility : the couriers do not have enough space to take all the remaining items (n-m). Then it will have max_item_per_courier + 1 (the depot)
+  # Second possibility : the couriers do not have enough space to take all the remaining items (n-m). Then it will have max_item_per_courier (max(li)) + 1 (the depot)
 
   sj_sorted = sorted(sj)
   max_li = max(li)

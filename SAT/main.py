@@ -28,7 +28,7 @@ if __name__ == '__main__':
     import multiprocessing as mp
     mp.freeze_support()
 
-    # Example usage
-    file_path = 'Instances/inst07.dat'
+    # Usage
+    file_path = 'Instances/inst12.dat'
     result = process_instance(file_path)
     print(result)
