@@ -1,0 +1,8 @@
+{
+    "pseudo_boolean_sat": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    }
+}
