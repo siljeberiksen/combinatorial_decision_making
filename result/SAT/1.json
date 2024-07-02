@@ -1,13 +1,13 @@
 {
     "pseudo_boolean_sat": {
-        "time": 0.098,
+        "time": 3.356,
         "optimal": true,
         "obj": 14,
         "sol": [
             [
-                1,
+                4,
                 3,
-                4
+                1
             ],
             [
                 2,

@@ -1,6 +1,6 @@
 {
     "pseudo_boolean_sat": {
-        "time": 0.033,
+        "time": 3.645,
         "optimal": true,
         "obj": 206,
         "sol": [
