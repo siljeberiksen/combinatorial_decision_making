@@ -34,7 +34,7 @@ def all_variables(m, n, li, sj, D):
   max_distance_per_courier_opt_1 = sum(np.max(row) for row in D_1)
 
   # Second possibility : the courier can move only max_places_travelled,
-  # then we can just take the max_places_travelled + 1 first max distances of the list since we have max_places_travelled places there are max_places_travelled + 1 distances
+  # then we can just take the max_places_travelled + 1 first max distances of the list.
   max_distance_per_courier_opt_2 = sum(heapq.nlargest(max_places_travelled + 1, D_1.flatten()))
   max_distance_per_courier = min(max_distance_per_courier_opt_1, max_distance_per_courier_opt_2)
 
