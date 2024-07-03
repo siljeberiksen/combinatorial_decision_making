@@ -40,19 +40,20 @@ distanceMaximum = pulp.LpVariable("Maximum_distance", lowBound=0, cat='Continuou
 
 # Ensure distanceMaximum represents the maximum distance
 for i in range(m):
+    # Calculate total distance for courier i
     total_distance = 0
     for j in range(n):
         for k in range(n):
             if j != k:
-                # Add a constraint for each pair of items j and k
+                # Add distance constraint for each pair of items j and k
                 linearProgrammingProblem += y[(i, j, k)] * D[j + 1][k + 1] <= distanceMaximum
-        # Distance from origin to first item
+        # Add distance from origin to first item
         total_distance += x[(i, j)] * D[0][j + 1]
-        # Distance from last item back to origin
+        # Add distance from last item back to origin
         total_distance += x[(i, j)] * D[j + 1][0]
 
-    # Add the total_distance constraint for each courier i
-    linearProgrammingProblem += total_distance <= distanceMaximum
+    # Constrain total_distance for courier i to be less than or equal to distanceMaximum
+    linearProgrammingProblem += total_distance <= distanceMaximum, f"Max_distance_constraint_{i}"
 
 # Minimize the maximum distance
 linearProgrammingProblem += distanceMaximum
