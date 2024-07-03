@@ -2,7 +2,7 @@ import pulp
 import json
 
 # Read input parameters from JSON file
-with open('input_data1.json', 'r') as f:
+with open('input_data3.json', 'r') as f:
     input_data = json.load(f)
 
 m = input_data["m"]
