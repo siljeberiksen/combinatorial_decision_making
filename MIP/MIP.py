@@ -37,10 +37,21 @@ for i in range(m):
 
 # Objective: Minimize the maximum distance traveled by any courier
 distanceMaximum = pulp.LpVariable("Maximum_distance", lowBound=0, cat='Continuous')
+
+# Ensure distanceMaximum represents the maximum distance
 for i in range(m):
-    total_distance = pulp.lpSum(y[(i, j, k)] * D[j + 1][k + 1] for j in range(n) for k in range(n) if j != k)
-    total_distance += pulp.lpSum(x[(i, j)] * D[0][j + 1] for j in range(n))  # Distance from origin to first item
-    total_distance += pulp.lpSum(x[(i, j)] * D[j + 1][0] for j in range(n))  # Distance from last item back to origin
+    total_distance = 0
+    for j in range(n):
+        for k in range(n):
+            if j != k:
+                # Add a constraint for each pair of items j and k
+                linearProgrammingProblem += y[(i, j, k)] * D[j + 1][k + 1] <= distanceMaximum
+        # Distance from origin to first item
+        total_distance += x[(i, j)] * D[0][j + 1]
+        # Distance from last item back to origin
+        total_distance += x[(i, j)] * D[j + 1][0]
+
+    # Add the total_distance constraint for each courier i
     linearProgrammingProblem += total_distance <= distanceMaximum
 
 # Minimize the maximum distance
@@ -50,9 +61,13 @@ linearProgrammingProblem += distanceMaximum
 linearProgrammingProblem.solve()
 
 # Output the results in the desired format
-output = {"geocode": {"time": pulp.value(linearProgrammingProblem.solutionTime),
-                      "optimal": pulp.LpStatus[linearProgrammingProblem.status] == "Optimal",
-                      "obj": pulp.value(distanceMaximum)}}
+output = {
+    "geocode": {
+        "time": pulp.value(linearProgrammingProblem.solutionTime),
+        "optimal": pulp.LpStatus[linearProgrammingProblem.status] == "Optimal",
+        "obj": pulp.value(distanceMaximum)
+    }
+}
 
 # Output the results
 if pulp.LpStatus[linearProgrammingProblem.status] == "Optimal":
