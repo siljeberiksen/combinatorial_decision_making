@@ -10,6 +10,9 @@ COPY MIP.py input_data1.json ./
 # Install PuLP package
 RUN pip install --no-cache-dir pulp
 
+# Make port 80 available to the world outside this container
+EXPOSE 80
+
 # Make script executable
 RUN chmod +x MIP.py
 
