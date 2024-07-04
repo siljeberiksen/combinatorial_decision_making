@@ -34,9 +34,10 @@ for j in range(n):
 
 
 
-
-# Minimize the maximum distance
-linearProgrammingProblem += distanceMaximum
+# Objective
+prob += max_distance
+for i in range(m):
+    prob += distance[i] <= max_distance
 
 # Solve the problem
 linearProgrammingProblem.solve()
