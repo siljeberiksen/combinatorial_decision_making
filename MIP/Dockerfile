@@ -19,6 +19,8 @@ RUN chmod +x MIP.py
 # Command to run the Python script
 CMD ["python", "./MIP.py"]
 
-docker build -t  MIP.
+# Open a terminal and navigate to the directory containing your Dockerfile.
+docker build -t combinatorialproject .
 
-docker run -v /path/to/local/data:/app/input_data -it MIP
+#This command mounts the res directory from your host machine to the container, ensuring the input data files are available to the script.
+docker run -v $(pwd)/res:/app/res combinatorialproject
