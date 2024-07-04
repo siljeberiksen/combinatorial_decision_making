@@ -18,7 +18,6 @@ linearProgrammingProblem = pulp.LpProblem("Multiple_Couriers_Planning", pulp.LpM
 x = pulp.LpVariable.dicts('x', [(i, j) for i in range(m) for j in range(n)], cat='Binary')
 # x[i, j] is 1 if item j is assigned to courier i, otherwise 0
 
-
 # Distance calculation
 distance = [pulp.lpSum([x[i, j] * D[0][j + 1] for j in range(n)]) for i in range(m)]  # From depot (index 0) to items
 max_distance = pulp.LpVariable("max_distance", lowBound=0, cat='Continuous')
@@ -26,18 +25,16 @@ max_distance = pulp.LpVariable("max_distance", lowBound=0, cat='Continuous')
 # Constraints
 for i in range(m):
     # Maximum load capacity constraint
-    linearProgrammingProblem += pulp.lpSum(x[(i, j)] * s_j[j] for j in range(n)) <= l_i[i]
+    linearProgrammingProblem += pulp.lpSum(x[(i, j)] * s_j[j] for j in range(n)) <= l_i[i], f"Max_load_constraint_{i}"
 
 for j in range(n):
     # Each item assigned exactly once
-    linearProgrammingProblem += pulp.lpSum(x[(i, j)] for i in range(m)) == 1
+    linearProgrammingProblem += pulp.lpSum(x[(i, j)] for i in range(m)) == 1, f"One_courier_per_item_{j}"
 
-
-
-# Objective
-prob += max_distance
+# Objective: Minimize the maximum distance traveled by any courier
+linearProgrammingProblem += max_distance
 for i in range(m):
-    prob += distance[i] <= max_distance
+    linearProgrammingProblem += distance[i] <= max_distance, f"Max_distance_constraint_{i}"
 
 # Solve the problem
 linearProgrammingProblem.solve()
@@ -47,7 +44,7 @@ output = {
     "geocode": {
         "time": pulp.value(linearProgrammingProblem.solutionTime),
         "optimal": pulp.LpStatus[linearProgrammingProblem.status] == "Optimal",
-        "obj": pulp.value(distanceMaximum)
+        "obj": pulp.value(max_distance)
     }
 }
 
