@@ -15,12 +15,13 @@ D = input_data["D"]
 linearProgrammingProblem = pulp.LpProblem("Multiple_Couriers_Planning", pulp.LpMinimize)
 
 # Decision variables
-x = pulp.LpVariable.dicts('x', [(i, j) for i in range(m) for j in range(n)], cat=pulp.LpBinary)
-y = pulp.LpVariable.dicts('y', [(i, j, k) for i in range(m) for j in range(n) for k in range(n) if j != k], cat=pulp.LpBinary)
+x = pulp.LpVariable.dicts('x', [(i, j) for i in range(m) for j in range(n)], cat='Binary')
 # x[i, j] is 1 if item j is assigned to courier i, otherwise 0
-# y[i, j, k] is 1 if courier i travels from item j to item k, otherwise 0
 
 
+# Distance calculation
+distance = [pulp.lpSum([x[i, j] * D[0][j + 1] for j in range(n)]) for i in range(m)]  # From depot (index 0) to items
+max_distance = pulp.LpVariable("max_distance", lowBound=0, cat='Continuous')
 
 # Constraints
 for i in range(m):
@@ -31,31 +32,8 @@ for j in range(n):
     # Each item assigned exactly once
     linearProgrammingProblem += pulp.lpSum(x[(i, j)] for i in range(m)) == 1
 
-# Subtour elimination constraints
-for i in range(m):
-    for j in range(n):
-        linearProgrammingProblem += pulp.lpSum(y[(i, j, k)] for k in range(n) if j != k) == x[(i, j)]
-        linearProgrammingProblem += pulp.lpSum(y[(i, k, j)] for k in range(n) if k != j) == x[(i, j)]
 
-# Objective: Minimize the maximum distance traveled by any courier
-distanceMaximum = pulp.LpVariable("Maximum_distance", lowBound=0, cat='Continuous')
 
-# Ensure distanceMaximum represents the maximum distance
-for i in range(m):
-    # Calculate total distance for courier i
-    total_distance = 0
-    for j in range(n):
-        for k in range(n):
-            if j != k:
-                # Add distance constraint for each pair of items j and k
-                linearProgrammingProblem += y[(i, j, k)] * D[j + 1][k + 1] <= distanceMaximum
-        # Add distance from origin to first item
-        total_distance += x[(i, j)] * D[0][j + 1]
-        # Add distance from last item back to origin
-        total_distance += x[(i, j)] * D[j + 1][0]
-
-    # Constrain total_distance for courier i to be less than or equal to distanceMaximum
-    linearProgrammingProblem += total_distance <= distanceMaximum, f"Max_distance_constraint_{i}"
 
 # Minimize the maximum distance
 linearProgrammingProblem += distanceMaximum
