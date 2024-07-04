@@ -5,7 +5,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Copy only the necessary files into the container
-COPY MIP.py input_data1.json ./
+COPY . /app
 
 # Install PuLP package
 RUN pip install --no-cache-dir pulp
