@@ -11,14 +11,16 @@ l_i = input_data["l_i"]
 s_j = input_data["s_j"]
 D = input_data["D"]
 
+# Model setup
+linearProgrammingProblem = pulp.LpProblem("Multiple_Couriers_Planning", pulp.LpMinimize)
+
 # Decision variables
 x = pulp.LpVariable.dicts('x', [(i, j) for i in range(m) for j in range(n)], cat=pulp.LpBinary)
 y = pulp.LpVariable.dicts('y', [(i, j, k) for i in range(m) for j in range(n) for k in range(n) if j != k], cat=pulp.LpBinary)
 # x[i, j] is 1 if item j is assigned to courier i, otherwise 0
 # y[i, j, k] is 1 if courier i travels from item j to item k, otherwise 0
 
-# Model setup
-linearProgrammingProblem = pulp.LpProblem("Multiple_Couriers_Planning", pulp.LpMinimize)
+
 
 # Constraints
 for i in range(m):
