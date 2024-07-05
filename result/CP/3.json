@@ -1,6 +1,6 @@
 {
     "sb_dwd_im_gecode": {
-        "time": 0.056,
+        "time": 0.071,
         "optimal": true,
         "obj": 12,
         "sol": [
@@ -16,46 +16,6 @@
             [
                 7,
                 1
-            ]
-        ]
-    },
-    "nsb_ff_im_gecode": {
-        "time": 0.068,
-        "optimal": true,
-        "obj": 12,
-        "sol": [
-            [
-                5,
-                6,
-                3
-            ],
-            [
-                4,
-                2
-            ],
-            [
-                7,
-                1
-            ]
-        ]
-    },
-    "sb_io_im_gecode": {
-        "time": 0.055,
-        "optimal": true,
-        "obj": 12,
-        "sol": [
-            [
-                5,
-                6,
-                3
-            ],
-            [
-                2,
-                4
-            ],
-            [
-                1,
-                7
             ]
         ]
     },
@@ -79,87 +39,7 @@
             ]
         ]
     },
-    "nsb_io_im_gecode": {
-        "time": 0.068,
-        "optimal": true,
-        "obj": 12,
-        "sol": [
-            [
-                5,
-                6,
-                3
-            ],
-            [
-                4,
-                2
-            ],
-            [
-                7,
-                1
-            ]
-        ]
-    },
-    "sb_ff_im_gecode": {
-        "time": 0.057,
-        "optimal": true,
-        "obj": 12,
-        "sol": [
-            [
-                5,
-                6,
-                3
-            ],
-            [
-                2,
-                4
-            ],
-            [
-                1,
-                7
-            ]
-        ]
-    },
     "sb_dwd_ir_gecode": {
-        "time": 0.054,
-        "optimal": true,
-        "obj": 12,
-        "sol": [
-            [
-                3,
-                6,
-                5
-            ],
-            [
-                4,
-                2
-            ],
-            [
-                1,
-                7
-            ]
-        ]
-    },
-    "nsb_ff_ir_gecode": {
-        "time": 0.066,
-        "optimal": true,
-        "obj": 12,
-        "sol": [
-            [
-                5,
-                6,
-                3
-            ],
-            [
-                4,
-                2
-            ],
-            [
-                7,
-                1
-            ]
-        ]
-    },
-    "sb_io_ir_gecode": {
         "time": 0.064,
         "optimal": true,
         "obj": 12,
@@ -171,11 +51,11 @@
             ],
             [
                 3,
-                6
+                7
             ],
             [
-                1,
-                7
+                6,
+                1
             ]
         ]
     },
@@ -196,46 +76,6 @@
             [
                 7,
                 1
-            ]
-        ]
-    },
-    "nsb_io_ir_gecode": {
-        "time": 0.068,
-        "optimal": true,
-        "obj": 12,
-        "sol": [
-            [
-                5,
-                6,
-                3
-            ],
-            [
-                4,
-                2
-            ],
-            [
-                7,
-                1
-            ]
-        ]
-    },
-    "sb_ff_ir_gecode": {
-        "time": 0.067,
-        "optimal": true,
-        "obj": 12,
-        "sol": [
-            [
-                5,
-                6,
-                3
-            ],
-            [
-                2,
-                4
-            ],
-            [
-                1,
-                7
             ]
         ]
     }

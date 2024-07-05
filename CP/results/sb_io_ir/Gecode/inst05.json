@@ -9,11 +9,11 @@
       "default",
       "raw"
     ],
-    "time": 42
+    "time": 47
   },
   {
     "type": "status",
     "status": "OPTIMAL_SOLUTION",
-    "time": 42
+    "time": 47
   }
 ]

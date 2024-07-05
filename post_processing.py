@@ -94,7 +94,7 @@ directory_path = './CP/results/'
 subdirectories = []
 
 # Iterate over each item in the directory
-for item in os.listdir(directory_path):
+for item in ["sb_dwd_im", "nsb_dwd_im", "sb_dwd_ir", "nsb_dwd_ir"]:
     item_path = os.path.join(directory_path, item)
     # Check if the item is a directory
     if os.path.isdir(item_path):
@@ -109,7 +109,7 @@ results = {}
 for folder in subdirectories:
     for filename in os.listdir(directory_path + folder + "/Gecode"):
         if filename.endswith(".json"):
-            print(directory_path + folder + "/Gecode/" + filename)
+            print()
             with open(directory_path + folder + "/Gecode/" + filename, 'r') as file:
                data = json.load(file)
             result = process(data, filename)

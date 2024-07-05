@@ -1,23 +1,6 @@
 {
     "sb_dwd_im_gecode": {
-        "time": 0.046,
-        "optimal": true,
-        "obj": 15,
-        "sol": [
-            [
-                3,
-                6,
-                4
-            ],
-            [
-                1,
-                2,
-                5
-            ]
-        ]
-    },
-    "nsb_ff_im_gecode": {
-        "time": 0.051,
+        "time": 0.059,
         "optimal": true,
         "obj": 14,
         "sol": [
@@ -30,23 +13,6 @@
                 2,
                 5,
                 6
-            ]
-        ]
-    },
-    "sb_io_im_gecode": {
-        "time": 0.048,
-        "optimal": true,
-        "obj": 15,
-        "sol": [
-            [
-                3,
-                6,
-                4
-            ],
-            [
-                1,
-                2,
-                5
             ]
         ]
     },
@@ -67,59 +33,8 @@
             ]
         ]
     },
-    "nsb_io_im_gecode": {
-        "time": 0.047,
-        "optimal": true,
-        "obj": 14,
-        "sol": [
-            [
-                4,
-                3,
-                1
-            ],
-            [
-                2,
-                5,
-                6
-            ]
-        ]
-    },
-    "sb_ff_im_gecode": {
-        "time": 0.047,
-        "optimal": true,
-        "obj": 15,
-        "sol": [
-            [
-                3,
-                6,
-                4
-            ],
-            [
-                1,
-                2,
-                5
-            ]
-        ]
-    },
     "sb_dwd_ir_gecode": {
-        "time": 0.045,
-        "optimal": true,
-        "obj": 15,
-        "sol": [
-            [
-                3,
-                6,
-                4
-            ],
-            [
-                1,
-                2,
-                5
-            ]
-        ]
-    },
-    "nsb_ff_ir_gecode": {
-        "time": 0.05,
+        "time": 0.134,
         "optimal": true,
         "obj": 14,
         "sol": [
@@ -127,23 +42,6 @@
                 4,
                 3,
                 1
-            ],
-            [
-                2,
-                5,
-                6
-            ]
-        ]
-    },
-    "sb_io_ir_gecode": {
-        "time": 0.127,
-        "optimal": true,
-        "obj": 14,
-        "sol": [
-            [
-                1,
-                3,
-                4
             ],
             [
                 2,
@@ -166,40 +64,6 @@
                 2,
                 5,
                 6
-            ]
-        ]
-    },
-    "nsb_io_ir_gecode": {
-        "time": 0.052,
-        "optimal": true,
-        "obj": 14,
-        "sol": [
-            [
-                4,
-                3,
-                1
-            ],
-            [
-                2,
-                5,
-                6
-            ]
-        ]
-    },
-    "sb_ff_ir_gecode": {
-        "time": 0.046,
-        "optimal": true,
-        "obj": 15,
-        "sol": [
-            [
-                2,
-                5,
-                6,
-                4
-            ],
-            [
-                1,
-                3
             ]
         ]
     }
