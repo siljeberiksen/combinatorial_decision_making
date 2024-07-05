@@ -1,4 +1,4 @@
-from z3 import Solver, sat, Bool, is_true
+from z3 import *
 import time
 import os
 import json
@@ -7,7 +7,7 @@ import numpy as np
 from variables import all_variables
 from constraints import add_movement_constraints, add_courier_capacity_constraints, ensure_each_item_delivered_exactly_once, ensure_each_couriers_deliver_at_least_one_item, ensure_couriers_at_one_place, ensure_couriers_return_to_start, add_distance_constraint
 
-
+# For a pivot give us the way each courier travels and his list of item in the right order.
 def items_per_couriers(m, n, li, sj, D, courier_at_location_per_movement, routes, solver):
 
     working_variables = all_variables(m, n, li, sj, D)
@@ -54,16 +54,47 @@ def items_per_couriers(m, n, li, sj, D, courier_at_location_per_movement, routes
 
     return L_objects_couriers
 
+# To obtain the min max distance travel by each courier.
+def objective_distance(m, n, li, sj, D, solution):
+    # Extract working variables including couriers based on other input variables
+    working_variables = all_variables(m, n, li, sj, D)
+    COURIERS = working_variables["COURIERS"]
+    # Path of all couriers
+    path = []
+    # For each them we add the depot at the end and the beginning of his list of items picked up. 
+    for c in COURIERS:
+        path.append([n+1] + solution[c] + [n+1])
+    
+     # List to store the total distance each courier travels.
+    distance_per_courier_list = []
+     # Calculate the distance for the current path by summing up distances between consecutive points.
+    for c in COURIERS:
+
+        distance_per_courier = 0
+
+        for l in range(1,len(path[c])):
+
+            curr_item = path[c][l] - 1
+            prev_item = path[c][l-1] - 1
+            distance_per_courier = distance_per_courier + D[prev_item][curr_item]
+
+        distance_per_courier_list.append(distance_per_courier) # Add total distance for this courier
+
+    # Return the maximum distance traveled by any courier
+    return max(distance_per_courier_list)
+
+
+
 
 # To save a json file.
-def save_results(solution, best_pivot, execution_time, optimal, instance_name):
+def save_results(solution, max_distance, execution_time, optimal, instance_name):
     # Extract numeric part from instance name, e.g., "inst01.dat" -> "1"
     instance_number = int(''.join(filter(str.isdigit, instance_name)))
     # Generate the filename based on the instance number
     filename = f'{instance_number}.json'
     
     # Define the path to save the file
-    save_path = os.path.join('res', 'SAT')
+    save_path = os.path.join('result', 'SAT')
     
     # Ensure the directory exists
     os.makedirs(save_path, exist_ok=True)
@@ -75,7 +106,7 @@ def save_results(solution, best_pivot, execution_time, optimal, instance_name):
         "pseudo_boolean_sat": {
             "time": float(execution_time),
             "optimal": optimal,
-            "obj": int(best_pivot) if best_pivot is not None else None,
+            "obj": int(max_distance) if max_distance is not None else None,
             "sol": solution
         }
     }
@@ -183,10 +214,12 @@ def MCP(m, n, li, sj, D, instance_name, time_limit=300):
             execution_time = round(current_time - start_time, 3)
             # To be sure the result it is under the timeout.
             optimal = execution_time < time_limit
+            # Calcul of the objective distance
+            obj = objective_distance(m, n, li, sj, D, solution)
             # Save the result in the good format.
-            save_results(solution, best_pivot, execution_time, optimal, instance_name)
+            save_results(solution, obj, execution_time, optimal, instance_name)
 
-            return solution, best_pivot, execution_time
+            return solution, obj, execution_time
         print()
         print(f"pivot : {pivot}")
         print()
@@ -214,7 +247,7 @@ def MCP(m, n, li, sj, D, instance_name, time_limit=300):
                 # Couriers routes and distances travelled + the items carried by each of them.
                 solution = result_dict["solution"]
                 # Max distance travelled for a courier.
-                best_pivot = pivot
+                best_pivot = int(pivot)
                 best_trial = trial
                 end_time = time.time()
                 execution_time = round(end_time - start_time, 3)
@@ -256,5 +289,8 @@ def MCP(m, n, li, sj, D, instance_name, time_limit=300):
                 break
 
     # Therefor we return the best results we got.
-    save_results(solution, best_pivot, 300, False, instance_name)
-    return solution, best_pivot, 300
+    # Calcul of the objective distance
+    obj = objective_distance(m, n, li, sj, D, solution)
+    # Save the result in the good format.
+    save_results(solution, obj, 300, False, instance_name)
+    return solution, obj, 300
