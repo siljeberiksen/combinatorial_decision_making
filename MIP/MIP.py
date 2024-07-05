@@ -33,8 +33,9 @@ for i in range(m):
     currentPoint = 0
     courier_distance = 0
     for j in range(n):
-        courier_distance += pulp.lpSum([x[(i, j)] * D[currentPoint][j + 1]])
+        courier_distance += pulp.lpSum([x[(i, j)] * D[currentPoint][j]])
         currentPoint = j
+    courier_distance += D[currentPoint][0]
     traveledDistancesByEachCourier.append(courier_distance)
 
 # Define the max distance variable
