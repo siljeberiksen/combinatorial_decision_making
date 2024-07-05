@@ -125,9 +125,7 @@ def add_distance_constraint(solver, couriers, locations, courier_at_location_per
 
     number_of_possible_movement = 0
 
-    for movement in range(n):
-        if np.sum(distances_positive[:movement + 1]) > upper_bound:
-            break
+    while np.sum(distances_positive[:number_of_possible_movement]) <= upper_bound and number_of_possible_movement < n:
         number_of_possible_movement = number_of_possible_movement + 1
 
     if number_of_possible_movement < max_places_travelled:
