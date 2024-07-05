@@ -16,7 +16,7 @@ docker run --rm -v ${PWD}/result:/app/result -v ${PWD}/Instances:/app/Instances 
 All Instances :
 docker run --rm -v ${PWD}/result:/app/result -v ${PWD}/Instances:/app/Instances sat_mip python ./SAT/run_all_instances.py
 Check the solution :
-docker run --rm -v ${PWD}/result:/app/result -v ${PWD}/Instances:/app/Instances sat_mip python solution_checker.py /app/Instances /app/result/SAT/
+docker run --rm -v ${PWD}/result:/app/result -v ${PWD}/Instances:/app/Instances sat_mip python solution_checker.py /app/Instances /app/result/
 
 Launch the docker with  CP : 
 docker build -t cp -f Dockerfile.cp .
