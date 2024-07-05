@@ -290,7 +290,10 @@ def MCP(m, n, li, sj, D, instance_name, time_limit=300):
 
     # Therefor we return the best results we got.
     # Calcul of the objective distance
-    obj = objective_distance(m, n, li, sj, D, solution)
+    if solution != None:
+        obj = objective_distance(m, n, li, sj, D, solution)
+    else:
+        obj = None
     # Save the result in the good format.
     save_results(solution, obj, 300, False, instance_name)
     return solution, obj, 300
