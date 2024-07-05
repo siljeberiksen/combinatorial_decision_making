@@ -12,7 +12,7 @@ Example for SAT (for MIP replace ./SAT/solve_instance.py <instance_number> par .
 One instance :
 docker run --rm -v ${PWD}/result:/app/result -v ${PWD}/Instances:/app/Instances sat_mip python ./SAT/solve_instance.py <instance_number>, (replace ${PWD} $(pwd) for mac)
 Example :
-docker run --rm -v ${PWD}/res:/app/result -v ${PWD}/Instances:/app/Instances sat_mip python ./SAT/solve_instance.py 01
+docker run --rm -v ${PWD}/result:/app/result -v ${PWD}/Instances:/app/Instances sat_mip python ./SAT/solve_instance.py 01
 All Instances :
 docker run --rm -v ${PWD}/result:/app/result -v ${PWD}/Instances:/app/Instances sat_mip python ./SAT/run_all_instances.py
 Check the solution :
@@ -28,6 +28,7 @@ One instance of a model :
 docker run --rm -v ${PWD}/CP/results:/src/CP/results -v ${PWD}/Instances_dzn:/src/Instances_dzn cp ./run_single_model.sh /src/CP/<model.mzn> /src/Instances_dzn/<instance_file_name> /src/CP/results/<model>/Gecode/<instance_file_name_output> Gecode
 
 docker run --rm -v ${PWD}/CP/results:/src/CP/results -v ${PWD}/Instances_dzn:/src/Instances_dzn cp ./run_single_model.sh /src/CP/nsb_dwd_im.mzn /src/Instances_dzn/inst01.dzn /src/CP/results/nsb_dwd_im/Gecode/inst01.json Gecode
+
 
 
 
