@@ -38,33 +38,8 @@
     "nsb_dwd_im_gecode": {
         "time": 300.0,
         "optimal": false,
-        "obj": 348,
-        "sol": [
-            [
-                17
-            ],
-            [
-                16
-            ],
-            [
-                15
-            ],
-            [
-                14
-            ],
-            [
-                11,
-                12,
-                10
-            ],
-            [
-                6,
-                8,
-                2,
-                5,
-                9
-            ]
-        ]
+        "obj": null,
+        "sol": null
     },
     "sb_dwd_ir_gecode": {
         "time": 300.0,
