@@ -2,7 +2,7 @@ import pulp
 import json
 
 # Read input parameters from JSON file
-with open('input_data1.json', 'r') as f:
+with open('input_data4.json', 'r') as f:
     input_data = json.load(f)
 
 m = input_data["m"]
@@ -41,7 +41,7 @@ for i in range(m):
 # Define the max distance variable
 maxTraveledDistance = pulp.LpVariable("maxTraveledDistance", lowBound=0, cat='Continuous')
 
-# Ensure maxTraveledDistance represents the maximum distance traveled by any courier
+# Ensure maxTraveledDistance representsrepresents the maximum distance traveled by any courier
 for i in range(m):
     linearProgrammingProblem += traveledDistancesByEachCourier[i] <= maxTraveledDistance
 
