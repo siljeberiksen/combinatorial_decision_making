@@ -38,7 +38,6 @@ def write_dzn_file(output_filename, m, n, li, sj, D):
         f.write('|];\n')
 
 
-m, n, li, sj, D = read_input_file("instances/inst01.dat")
 instances = [f"Instances/inst{i:02}.dat" for i in range(1, 22)]
 instances_dzn = [f"Instances_dzn/inst{i:02}.dzn" for i in range(1, 22)]
 

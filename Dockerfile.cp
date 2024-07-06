@@ -27,19 +27,19 @@ WORKDIR /src
 COPY . .
 
 # Make sure the run_model.sh script is executable
-RUN chmod +x ./run_all_models.sh
-RUN chmod +x ./run_model.sh
-RUN chmod +x ./run_single_model.sh
+RUN chmod +x ./CP/shell_scripts_docker/run_all_models.sh
+RUN chmod +x ./CP/shell_scripts_docker/run_model.sh
+RUN chmod +x ./CP/shell_scripts_docker/run_single_model.sh
 RUN chmod +x ./CP
 RUN chmod +x ./result
-RUN chmod +x ./entrypoint.sh
-
+RUN chmod +x ./CP/shell_scripts_docker/entrypoint.sh
+RUN chmod +x ./Instances_dzn
 # Create and activate a virtual environment, then install dependencies
 RUN python3 -m venv venv
 RUN . venv/bin/activate && pip install -r requirements_cp.txt
 
 # # Define the entry point script
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["./CP/shell_scripts_docker/entrypoint.sh"]
 
 # Default command: provide help information
 CMD ["sh", "-c", "echo 'Usage: docker run --rm -v \${PWD}/CP/results:/src/CP/results cp <script> <model_file> <instance_file> <result_file> <solver>'; echo 'Example: docker run --rm -v \${PWD}/CP/results:/src/CP/results -v \${PWD}/Instances_dzn:/src/Instances_dzn cp ./run_single_model.sh /src/CP/nsb_dwd_im.mzn /src/Instances_dzn/inst01.dzn /src/CP/results/nsb_dwd_im/Gecode/inst01.json Gecode'"]

@@ -7,6 +7,8 @@ RESULTS_DIR="./CP/results"
 # Ensure results directory exists
 mkdir -p $RESULTS_DIR
 
+. venv/bin/activate && python3 CP/process_files/pre_processing.py
+
 # Define an array of solvers
 SOLVERS=("Gecode" "Chuffed")
 # for solver in "${SOLVERS[@]}"; do
@@ -22,9 +24,9 @@ for solver in "${SOLVERS[@]}"; do
       RESULT_FILE="$RESULTS_DIR/${MODEL_NAME}/${solver}/${INSTANCE_NAME}.json"
 
       # Run the model on the instance and save the result
-      ./run_model.sh $MODEL $INSTANCE $RESULT_FILE $solver
+      ./CP/shell_scripts_docker/run_model.sh $MODEL $INSTANCE $RESULT_FILE $solver
     done
   done
 done
 
-. venv/bin/activate && python3 post_processing.py
+. venv/bin/activate && python3 CP/process_files/post_processing.py

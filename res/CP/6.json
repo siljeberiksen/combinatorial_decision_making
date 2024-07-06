@@ -1,0 +1,176 @@
+{
+    "sb_dwd_im_Gecode": {
+        "time": 3.221,
+        "optimal": true,
+        "obj": 322,
+        "sol": [
+            [
+                8
+            ],
+            [
+                7
+            ],
+            [
+                6
+            ],
+            [
+                5
+            ],
+            [
+                4
+            ],
+            [
+                3,
+                2,
+                1
+            ]
+        ]
+    },
+    "sb_dwd_im_Chuffed": {
+        "time": 0.324,
+        "optimal": true,
+        "obj": 322,
+        "sol": [
+            [
+                8
+            ],
+            [
+                7
+            ],
+            [
+                6
+            ],
+            [
+                5
+            ],
+            [
+                4
+            ],
+            [
+                3,
+                2,
+                1
+            ]
+        ]
+    },
+    "nsb_dwd_im_Gecode": {
+        "time": 19.787,
+        "optimal": true,
+        "obj": 322,
+        "sol": [
+            [
+                8
+            ],
+            [
+                7
+            ],
+            [
+                6
+            ],
+            [
+                5
+            ],
+            [
+                4
+            ],
+            [
+                3,
+                2,
+                1
+            ]
+        ]
+    },
+    "nsb_dwd_im_Chuffed": {
+        "time": 1.108,
+        "optimal": true,
+        "obj": 322,
+        "sol": [
+            [
+                8
+            ],
+            [
+                7
+            ],
+            [
+                6
+            ],
+            [
+                5
+            ],
+            [
+                4
+            ],
+            [
+                3,
+                2,
+                1
+            ]
+        ]
+    },
+    "sb_dwd_ir_Gecode": {
+        "time": 7.918,
+        "optimal": true,
+        "obj": 322,
+        "sol": [
+            [
+                4,
+                6
+            ],
+            [
+                8
+            ],
+            [
+                3
+            ],
+            [
+                5,
+                1
+            ],
+            [
+                2
+            ],
+            [
+                7
+            ]
+        ]
+    },
+    "sb_dwd_ir_Chuffed": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_dwd_ir_Gecode": {
+        "time": 11.466,
+        "optimal": true,
+        "obj": 322,
+        "sol": [
+            [
+                2,
+                1,
+                4
+            ],
+            [
+                3
+            ],
+            [
+                6
+            ],
+            [
+                5
+            ],
+            [
+                8
+            ],
+            [
+                7
+            ]
+        ]
+    },
+    "nsb_dwd_ir_Chuffed": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    }
+}

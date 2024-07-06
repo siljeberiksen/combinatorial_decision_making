@@ -1,86 +1,71 @@
 {
     "sb_dwd_im_Gecode": {
-        "time": 0.059,
+        "time": 0.053,
         "optimal": true,
-        "obj": 14,
+        "obj": 206,
         "sol": [
             [
-                4,
-                3,
-                1
+                2
             ],
             [
-                2,
-                5,
-                6
+                1,
+                3
             ]
         ]
     },
     "sb_dwd_im_Chuffed": {
-        "time": 0.069,
+        "time": 0.046,
         "optimal": true,
-        "obj": 14,
+        "obj": 206,
         "sol": [
             [
-                4,
-                3,
-                1
+                2
             ],
             [
-                2,
-                5,
-                6
+                1,
+                3
             ]
         ]
     },
     "nsb_dwd_im_Gecode": {
-        "time": 0.059,
+        "time": 0.043,
         "optimal": true,
-        "obj": 14,
+        "obj": 206,
         "sol": [
             [
-                4,
-                3,
-                1
+                2
             ],
             [
-                2,
-                5,
-                6
+                1,
+                3
             ]
         ]
     },
     "nsb_dwd_im_Chuffed": {
-        "time": 0.177,
+        "time": 0.047,
         "optimal": true,
-        "obj": 14,
+        "obj": 206,
         "sol": [
             [
-                4,
-                3,
-                1
+                2
             ],
             [
-                2,
-                5,
-                6
+                1,
+                3
             ]
         ]
     },
     "sb_dwd_ir_Gecode": {
-        "time": 0.134,
+        "time": 0.045,
         "optimal": true,
-        "obj": 14,
+        "obj": 206,
         "sol": [
             [
-                4,
-                3,
-                1
+                2
             ],
             [
-                2,
-                5,
-                6
+                1,
+                3
             ]
         ]
     },
@@ -91,19 +76,16 @@
         "sol": null
     },
     "nsb_dwd_ir_Gecode": {
-        "time": 0.047,
+        "time": 0.037,
         "optimal": true,
-        "obj": 14,
+        "obj": 206,
         "sol": [
             [
-                4,
-                3,
-                1
+                2
             ],
             [
-                2,
-                5,
-                6
+                1,
+                3
             ]
         ]
     },

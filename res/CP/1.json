@@ -34,7 +34,7 @@
         ]
     },
     "nsb_dwd_im_Gecode": {
-        "time": 0.059,
+        "time": 0.06,
         "optimal": true,
         "obj": 14,
         "sol": [
