@@ -6,7 +6,8 @@ WORKDIR /app
 
 # Copy the project files into the container
 COPY ./SAT ./SAT
-COPY ./result ./result
+COPY ./MIP ./MIP
+COPY ./res ./res
 COPY ./Instances ./Instances
 COPY ./Instances_dzn ./Instances_dzn
 COPY requirements.txt requirements.txt
