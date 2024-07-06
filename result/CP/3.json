@@ -1,5 +1,5 @@
 {
-    "sb_dwd_im_gecode": {
+    "sb_dwd_im_Gecode": {
         "time": 0.071,
         "optimal": true,
         "obj": 12,
@@ -19,7 +19,27 @@
             ]
         ]
     },
-    "nsb_dwd_im_gecode": {
+    "sb_dwd_im_Chuffed": {
+        "time": 0.082,
+        "optimal": true,
+        "obj": 12,
+        "sol": [
+            [
+                5,
+                6,
+                3
+            ],
+            [
+                4,
+                2
+            ],
+            [
+                7,
+                1
+            ]
+        ]
+    },
+    "nsb_dwd_im_Gecode": {
         "time": 0.071,
         "optimal": true,
         "obj": 12,
@@ -39,7 +59,27 @@
             ]
         ]
     },
-    "sb_dwd_ir_gecode": {
+    "nsb_dwd_im_Chuffed": {
+        "time": 0.072,
+        "optimal": true,
+        "obj": 12,
+        "sol": [
+            [
+                5,
+                6,
+                3
+            ],
+            [
+                4,
+                2
+            ],
+            [
+                7,
+                1
+            ]
+        ]
+    },
+    "sb_dwd_ir_Gecode": {
         "time": 0.064,
         "optimal": true,
         "obj": 12,
@@ -59,7 +99,13 @@
             ]
         ]
     },
-    "nsb_dwd_ir_gecode": {
+    "sb_dwd_ir_Chuffed": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_dwd_ir_Gecode": {
         "time": 0.067,
         "optimal": true,
         "obj": 12,
@@ -78,5 +124,11 @@
                 1
             ]
         ]
+    },
+    "nsb_dwd_ir_Chuffed": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
     }
 }

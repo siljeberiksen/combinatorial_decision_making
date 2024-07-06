@@ -1,5 +1,5 @@
 {
-    "sb_dwd_im_gecode": {
+    "sb_dwd_im_Gecode": {
         "time": 300.0,
         "optimal": false,
         "obj": 220,
@@ -32,7 +32,40 @@
             ]
         ]
     },
-    "nsb_dwd_im_gecode": {
+    "sb_dwd_im_Chuffed": {
+        "time": 35.066,
+        "optimal": true,
+        "obj": 220,
+        "sol": [
+            [
+                10
+            ],
+            [
+                9
+            ],
+            [
+                8
+            ],
+            [
+                7
+            ],
+            [
+                6
+            ],
+            [
+                5
+            ],
+            [
+                3
+            ],
+            [
+                2,
+                4,
+                1
+            ]
+        ]
+    },
+    "nsb_dwd_im_Gecode": {
         "time": 300.0,
         "optimal": false,
         "obj": 220,
@@ -65,7 +98,40 @@
             ]
         ]
     },
-    "sb_dwd_ir_gecode": {
+    "nsb_dwd_im_Chuffed": {
+        "time": 105.273,
+        "optimal": true,
+        "obj": 220,
+        "sol": [
+            [
+                10
+            ],
+            [
+                9
+            ],
+            [
+                8
+            ],
+            [
+                7
+            ],
+            [
+                6
+            ],
+            [
+                5
+            ],
+            [
+                3
+            ],
+            [
+                2,
+                4,
+                1
+            ]
+        ]
+    },
+    "sb_dwd_ir_Gecode": {
         "time": 300.0,
         "optimal": false,
         "obj": 220,
@@ -98,7 +164,13 @@
             ]
         ]
     },
-    "nsb_dwd_ir_gecode": {
+    "sb_dwd_ir_Chuffed": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_dwd_ir_Gecode": {
         "time": 300.0,
         "optimal": false,
         "obj": 220,
@@ -130,5 +202,11 @@
                 5
             ]
         ]
+    },
+    "nsb_dwd_ir_Chuffed": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
     }
 }

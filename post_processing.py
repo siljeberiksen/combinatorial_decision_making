@@ -107,16 +107,16 @@ for item in ["sb_dwd_im", "nsb_dwd_im", "sb_dwd_ir", "nsb_dwd_ir"]:
 # Initialize the dictionary
 results = {}
 for folder in subdirectories:
-    for filename in os.listdir(directory_path + folder + "/Gecode"):
-        if filename.endswith(".json"):
-            print()
-            with open(directory_path + folder + "/Gecode/" + filename, 'r') as file:
-               data = json.load(file)
-            result = process(data, filename)
-            if  filename.replace('.json', '') not in results:
-                results[filename.replace('.json', '')] =  {}
-            # Update the nested dictionary
-            results[filename.replace('.json', '')][folder+ "_gecode"]= result
+    for solver in ["Gecode", "Chuffed"]:
+        for filename in os.listdir(directory_path + folder + "/"+ solver):
+            if filename.endswith(".json"):
+                with open(directory_path + folder + "/" + solver + "/" + filename, 'r') as file:
+                    data = json.load(file)
+                    result = process(data, filename)
+                    if  filename.replace('.json', '') not in results:
+                        results[filename.replace('.json', '')] =  {}
+                    # Update the nested dictionary
+                    results[filename.replace('.json', '')][folder+ "_" + solver]= result
 
 for key, value in results.items():
       # Use regular expression to extract the number

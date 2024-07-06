@@ -80,7 +80,7 @@ ann:search_ann;
 %search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], first_fail, indomain_min);
 %search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], first_fail, indomain_random);
 search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], dom_w_deg, indomain_min);
-%search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], dom_w_wdeg, indomain_random);
+%search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], dom_w_deg, indomain_random);
 solve
 ::search_ann 
 minimize max_distance;

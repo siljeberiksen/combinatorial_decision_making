@@ -1,5 +1,5 @@
 {
-    "sb_dwd_im_gecode": {
+    "sb_dwd_im_Gecode": {
         "time": 300.0,
         "optimal": false,
         "obj": 353,
@@ -35,13 +35,25 @@
             ]
         ]
     },
-    "nsb_dwd_im_gecode": {
+    "sb_dwd_im_Chuffed": {
         "time": 300.0,
         "optimal": false,
         "obj": null,
         "sol": null
     },
-    "sb_dwd_ir_gecode": {
+    "nsb_dwd_im_Gecode": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_dwd_im_Chuffed": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "sb_dwd_ir_Gecode": {
         "time": 300.0,
         "optimal": false,
         "obj": 167,
@@ -77,7 +89,13 @@
             ]
         ]
     },
-    "nsb_dwd_ir_gecode": {
+    "sb_dwd_ir_Chuffed": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    },
+    "nsb_dwd_ir_Gecode": {
         "time": 300.0,
         "optimal": false,
         "obj": 178,
@@ -112,5 +130,11 @@
                 8
             ]
         ]
+    },
+    "nsb_dwd_ir_Chuffed": {
+        "time": 300.0,
+        "optimal": false,
+        "obj": null,
+        "sol": null
     }
 }
