@@ -2,7 +2,7 @@ import pulp
 import json
 
 # Read input parameters from JSON file
-with open('input_data1.json', 'r') as f:
+with open('input_data4.json', 'r') as f:
     input_data = json.load(f)
 
 m = input_data["m"]
@@ -24,7 +24,7 @@ for i in range(m):
     linearProgrammingProblem += pulp.lpSum(x[(i, j)] * s_j[j] for j in range(n)) <= l_i[i]
 
 for j in range(n):
-    # Each item assigned exactly once
+    # Each item is assigned exactly once
     linearProgrammingProblem += pulp.lpSum(x[(i, j)] for i in range(m)) == 1
 
 # Route continuity constraints
@@ -77,28 +77,23 @@ output = {
     }
 }
 
-# Output the results
 if pulp.LpStatus[linearProgrammingProblem.status] == "Optimal":
     result = [[] for _ in range(m)]
     for i in range(m):
-        current = 0  # Start from the depot
-        route = [current]
-        while True:
-            next_stop = None
-            for j in range(1, n+1):
-                y_value = pulp.value(y[(i, current, j)])
-                if y_value is not None and y_value > 0.5:
-                    next_stop = j
-                    break
-            if next_stop is None:
-                break
-            route.append(next_stop)
-            result[i].append(next_stop - 1)  # Subtract 1 to match the original 0-based indexing
-            current = next_stop
-        print(f"Courier {i} route: {route}")
+        for j in range(n):
+            if pulp.value(x[(i, j)]) > 0.5:
+                result[i].append(j+1)
+        print(f"Courier {i} items: {[item for item in result[i]]}")  # Add 1 to match 1-based indexing
+    
     output["geocode"]["sol"] = result
-else:
-    output["geocode"]["sol"] = []
+    print(json.dumps(output, indent=4))
 
-# Print the result in JSON format
-print(json.dumps(output, indent=4))
+    # Verification
+    all_items = set()
+    for courier_items in result:
+        all_items.update(courier_items)
+    if len(all_items) != n:
+        print(f"Warning: Not all items are assigned. Assigned items: {sorted(all_items)}")
+        print(f"Missing items: {set(range(n)) - all_items}")
+    else:
+        print("All items have been assigned successfully.")
