@@ -63,13 +63,8 @@ array [COURIERS] of var int: distances = [sum(i in LOCATIONS, j in LOCATIONS) (r
 var int: max_distance = max(c in COURIERS) (distances[c]);
 
 ann:search_ann;
-
-%search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], input_order, indomain_min);
-%search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], input_order, indomain_random);
-%search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], first_fail, indomain_min);
-%search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], first_fail, indomain_random);
-search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], dom_w_deg, indomain_min);
-%search_ann = int_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], dom_w_deg, indomain_random);
+search_ann = bool_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], dom_w_deg, indomain_min);
+%search_ann = bool_search([routes[c, i, j] | c in COURIERS, i in LOCATIONS, j in LOCATIONS], dom_w_deg, indomain_random);
 solve
 ::search_ann 
 minimize max_distance;
