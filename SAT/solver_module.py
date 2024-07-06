@@ -94,7 +94,7 @@ def save_results(solution, max_distance, execution_time, optimal, instance_name)
     filename = f'{instance_number}.json'
     
     # Define the path to save the file
-    save_path = os.path.join('result', 'SAT')
+    save_path = os.path.join('res', 'SAT')
     
     # Ensure the directory exists
     os.makedirs(save_path, exist_ok=True)
