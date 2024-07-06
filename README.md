@@ -126,11 +126,11 @@ cmdo_project/
 │   ├── sb_dwd_im
 │   ├── sb_dwd_ir
 ├── MIP/
-│   ├── ...
-│   ├── ...
-│   ├── ...
-│   ├── ...
-│   ├── ...
+│   ├── solve_instance_mip.py
+│   ├── run_all_instances_mip.py
+│   ├── solver_module_mip.py
+│   ├── variables_mip.py
+│   ├── constraints_mip.py
 ├── result/
 │   ├── SAT/
 │   ├── CP/
