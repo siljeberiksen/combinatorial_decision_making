@@ -1,0 +1,19 @@
+# Use a base image with Python 3.11.9
+FROM python:3.11.9-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the project files into the container
+COPY ./SAT ./SAT
+COPY ./result ./result
+COPY ./Instances ./Instances
+COPY ./Instances_dzn ./Instances_dzn
+COPY requirements.txt requirements.txt
+COPY solution_checker.py solution_checker.py
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Default command to run the main script
+CMD ["python", "./SAT/solve_instance.py"]
