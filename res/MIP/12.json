@@ -1,0 +1,8 @@
+{
+    "PULP_CBC_CMD": {
+        "time": 215.15978384017944,
+        "optimal": false,
+        "obj": null,
+        "sol": null
+    }
+}
