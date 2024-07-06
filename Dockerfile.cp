@@ -31,7 +31,7 @@ RUN chmod +x ./CP/shell_scripts_docker/run_all_models.sh
 RUN chmod +x ./CP/shell_scripts_docker/run_model.sh
 RUN chmod +x ./CP/shell_scripts_docker/run_single_model.sh
 RUN chmod +x ./CP
-RUN chmod +x ./result
+RUN chmod +x ./res
 RUN chmod +x ./CP/shell_scripts_docker/entrypoint.sh
 RUN chmod +x ./Instances_dzn
 # Create and activate a virtual environment, then install dependencies

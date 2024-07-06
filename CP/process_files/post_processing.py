@@ -101,7 +101,7 @@ for key, value in results.items():
         # Convert to integer
     extracted_number = int(number[0]) if number else None
 
-    with open(f"result/CP/{extracted_number}.json", 'w') as output_file:
+    with open(f"res/CP/{extracted_number}.json", 'w') as output_file:
         json.dump(value, output_file, indent=4)
 
     print("Files saved")
