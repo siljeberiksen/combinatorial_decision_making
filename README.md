@@ -63,7 +63,7 @@ docker run --rm -v ${PWD}/CP/results:/src/CP/results -v ${PWD}/res/CP:/src/res/C
 
 #### All instance
 ```bash
-docker run --rm -v ${PWD}/CP/res:/src/CP/res -v ${PWD}/result/CP:/src/result/CP cp all
+docker run --rm -v ${PWD}/CP/results:/src/CP/results -v ${PWD}/res/CP:/src/res/CP -v ${PWD}/Instances_dzn:/src/Instances_dzn cp all
 ```
 
 ## Repository structure 
