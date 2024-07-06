@@ -4,25 +4,51 @@
 
 ### SAT/MIP
 
-Example for SAT (for MIP replace ./SAT/solve_instance.py <instance_number> par ./MIP/ ...)
-
 #### Build the image
 
 ```bash
 docker build -t sat_mip -f Dockerfile.sat_mip .
 ```
+### SAT
+Example for SAT
+
 #### One instance
 ```bash
-docker run --rm -v ${PWD}/res:/app/res -v ${PWD}/Instances:/app/Instances sat_mip python ./SAT/solve_instance.py <instance_number>, (replace ${PWD} $(pwd) for mac)
+docker run --rm -v ${PWD}/res:/app/res -v ${PWD}/Instances:/app/Instances sat_mip python ./SAT/solve_instance.py <instance_number>
 ```
+(replace ${PWD} $(pwd) for mac)
+
 Example :
 ```bash
 docker run --rm -v ${PWD}/res:/app/res -v ${PWD}/Instances:/app/Instances sat_mip python ./SAT/solve_instance.py 01
 ```
 #### All instances
+
 ```bash
 docker run --rm -v ${PWD}/res:/app/res -v ${PWD}/Instances:/app/Instances sat_mip python ./SAT/run_all_instances.py
-Check the solution :
+```
+
+### MIP
+Example for MIP
+
+#### One instance
+```bash
+docker run --rm -v ${PWD}/res:/app/res -v ${PWD}/Instances:/app/Instances sat_mip python ./MIP/solve_instance_mip.py <instance_number>
+```
+(replace ${PWD} $(pwd) for mac)
+
+Example :
+```bash
+docker run --rm -v ${PWD}/res:/app/res -v ${PWD}/Instances:/app/Instances sat_mip python ./MIP/solve_instance_mip.py 01
+```
+#### All instances
+
+```bash
+docker run --rm -v ${PWD}/res:/app/res -v ${PWD}/Instances:/app/Instances sat_mip python ./MIP/run_all_instances_mip.py
+```
+
+### Check the solution :
+```bash
 docker run --rm -v ${PWD}/res:/app/res -v ${PWD}/Instances:/app/Instances sat_mip python solution_checker.py /app/Instances /app/res/
 ```
 ### CP
