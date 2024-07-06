@@ -24,13 +24,16 @@ docker build -t cp -f Dockerfile.cp .
 
 All instances of all models :
 docker run --rm -v ${PWD}/CP/results:/src/CP/results cp ./run_all_models.sh
+docker run --rm -v ${PWD}/CP/results:/src/CP/results -v ${PWD}/result/CP:/src/result/CP cp all
 One instance of a model :
 docker run --rm -v ${PWD}/CP/results:/src/CP/results -v ${PWD}/Instances_dzn:/src/Instances_dzn cp ./run_single_model.sh /src/CP/<model.mzn> /src/Instances_dzn/<instance_file_name> /src/CP/results/<model>/Gecode/<instance_file_name_output> Gecode
 
 docker run --rm -v ${PWD}/CP/results:/src/CP/results -v ${PWD}/Instances_dzn:/src/Instances_dzn cp ./run_single_model.sh /src/CP/nsb_dwd_im.mzn /src/Instances_dzn/inst01.dzn /src/CP/results/nsb_dwd_im/Gecode/inst01.json Gecode
 
 
+docker run --rm -v ${PWD}/CP/results:/src/CP/results -v ${PWD}/result/CP:/src/result/CP cp single /src/CP/nsb_dwd_im.mzn /src/Instances_dzn/inst01.dzn /src/CP/results/nsb_dwd_im/Gecode/inst01.json Gecode
 
+docker run --rm -v ${PWD}/CP/results:/src/CP/results -v ${PWD}/result/CP:/src/result/CP cp single /src/CP/nsb_dwd_im.mzn /src/Instances_dzn/inst01.dzn /src/CP/results/nsb_dwd_im/Gecode/inst01.json Gecode
 
 cmdo_project/
 ├── SAT/

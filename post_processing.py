@@ -7,9 +7,6 @@ def process(data, filename):
     with open(f'Instances/{instance}.dat', 'r') as file:
           lines = file.readlines()
     
-    # Process the input data
-    print(filename)
-    print(lines)
     m = int(lines[0].strip())
     n = int(lines[1].strip())
     if isinstance(data, list) and len(data) > 0 and "output" in data[0] and "raw" in data[0]["output"]:
@@ -23,7 +20,6 @@ def process(data, filename):
             three_d_list = np.array(routes_bool_list).reshape(m,n+1, n+1)
             next_distances=[]
             for two_d_list in three_d_list:
-                print(two_d_list)
                 next_distance = []
                 for i in range(0,n):
                     if two_d_list[n][i]==True:
@@ -38,14 +34,10 @@ def process(data, filename):
                                             i=j
                                             next_distance.append(i+1)
                 next_distances.append(next_distance)
-                print(next_distance)
-                print("\n\n\n\n\n\n")
-            print(next_distances)
         else:
             print("Routes not found in the raw output.")
         max_distance = int(raw_output.split("Max Distance: ")[1].strip())
     else: 
-        print("No raw output")
         max_distance = None
         next_distances = None
 
@@ -55,13 +47,10 @@ def process(data, filename):
         time=30000
     status = 0
     for element in data:
-        print("element", element)
-        print(element["type"])
         if element["type"]=="status":
             status = element["status"]
     if status != "OPTIMAL_SOLUTION":
         time = 300000
-    print("status", status)
     result_data = {
             "time": time/1000,
             "optimal": status == "OPTIMAL_SOLUTION",
@@ -70,17 +59,6 @@ def process(data, filename):
         }
 
     return result_data
-    # with open(f"result/CP/{number}.json", 'w') as output_file:
-    #     json.dump(result_data, output_file, indent=4)
-
-
-
-# for k in range(2,3):
-#     print("k", k)
-#     with open(f'CP/results/inst{k}.json', 'r') as file:
-#         data = json.load(file)
-
-#     process(data, k)
 
 
 
@@ -100,8 +78,6 @@ for item in ["sb_dwd_im", "nsb_dwd_im", "sb_dwd_ir", "nsb_dwd_ir"]:
     if os.path.isdir(item_path):
         subdirectories.append(item)
     
-
-# Display the list of subdirectories
 
 
 # Initialize the dictionary
@@ -128,19 +104,4 @@ for key, value in results.items():
     with open(f"result/CP/{extracted_number}.json", 'w') as output_file:
         json.dump(value, output_file, indent=4)
 
-    #     json.dump(result_data, output_file, indent=4)
-# Iterate over each file in the directory
-# for filename in os.listdir(directory_path):
-#     if filename.endswith(".json"):
-#         # Construct the full file path
-#         file_path = os.path.join(directory_path, filename)
-        
-#         # Open and read the JSON file
-#         with open(file_path, 'r') as json_file:
-#             data = json.load(json_file)
-            
-#             # Assuming the JSON file contains key-value pairs
-#             geocode_nsb_ff_im.update(data)
-
-# Display the dictionary
-# #print(geocode_nsb_ff_im)
+    print("Files saved")
