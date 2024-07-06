@@ -45,7 +45,7 @@ docker run --rm -v ${PWD}/CP/results:/src/CP/results -v ${PWD}/result/CP:/src/re
 ```
 
 ## Repository structure 
-
+```bash
 cmdo_project/
 ├── SAT/
 │   ├── solve_instance.py
