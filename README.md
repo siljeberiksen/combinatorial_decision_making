@@ -54,7 +54,7 @@ docker build -t cp -f Dockerfile.cp .
 ```
 #### One instance
 ```bash
-docker run --rm -v ${PWD}/CP/results:/src/CP/results -v ${PWD}/res/CP:/src/res/CP -v ${PWD}/Instances_dzn:/src/Instances_dzn cp single /src/CP/<model.mzn> /src/Instances_dzn/<instance_file_name> /src/CP/results/<model>/Gecode/<instance_file_name_output> Gecode
+docker run --rm -v ${PWD}/CP/results:/src/CP/results -v ${PWD}/res/CP:/src/res/CP -v ${PWD}/Instances_dzn:/src/Instances_dzn cp single /src/CP/<model.mzn> /src/Instances_dzn/<instance_file_name> /src/CP/results/<model>/<Gecode/Chuffed>/ <instance_file_name_output> <Gecode/Chuffed>
 ```
 Example: 
 ```bash
