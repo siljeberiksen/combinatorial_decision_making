@@ -7,7 +7,7 @@ RESULTS_DIR="./CP/results"
 # Ensure results directory exists
 mkdir -p $RESULTS_DIR
 
-. venv/bin/activate && python3 /CP/process_files/pre_process_files.py
+. venv/bin/activate && python3 CP/process_files/pre_process_files.py
 
 # Define an array of solvers
 SOLVERS=("Gecode" "Chuffed")
@@ -29,4 +29,4 @@ for solver in "${SOLVERS[@]}"; do
   done
 done
 
-. venv/bin/activate && python3 /CP/process_files/post_processing.py
+. venv/bin/activate && python3 CP/process_files/post_processing.py
