@@ -14,7 +14,7 @@ Example for SAT
 
 #### One instance
 ```bash
-docker run --rm -v ${PWD}/res:/app/res -v ${PWD}/Instances:/app/Instances sat_mip python ./SAT/solve_instance.py <instance_number>, (replace ${PWD} $(pwd) for mac)
+docker run --rm -v ${PWD}/res:/app/res -v ${PWD}/Instances:/app/Instances sat_mip python ./SAT/solve_instance.py <instance_number>
 ```
 Example :
 ```bash
@@ -31,7 +31,7 @@ Example for MIP
 
 #### One instance
 ```bash
-docker run --rm -v ${PWD}/res:/app/res -v ${PWD}/Instances:/app/Instances sat_mip python ./MIP/solve_instance_mip.py <instance_number>, (replace ${PWD} $(pwd) for mac)
+docker run --rm -v ${PWD}/res:/app/res -v ${PWD}/Instances:/app/Instances sat_mip python ./MIP/solve_instance_mip.py <instance_number>
 ```
 Example :
 ```bash
